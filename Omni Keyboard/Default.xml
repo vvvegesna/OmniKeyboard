@@ -1,0 +1,94 @@
+<Keyboard name="default" columns="4" rows="4" initial="init">
+    <Keyset id="init">
+        <Key text="abcd" link="l_abcd"/><Key text="efgh" link="l_efgh"/><Key text="ijkl" link="l_ijkl"/><Key text="util1"/>
+        <Key text="mno" link="l_mno"/><Key text="pqr" link="l_pqr"/><Key text="stu" link="l_stu"/><Key text="num"/>
+        <Key text="vw" link="l_vw"/><Key text="xy" link="l_xy"/><Key text="z" link="l_z"/><Key text="del"/>
+        <Key text="space"/><Key text="space"/><Key text="space"/><Key text="enter"/>
+    </Keyset>
+    
+    <Keyset id="l_abcd">
+        <Key text="a"/><Key text="A"/><Key/><Key/>
+        <Key text="b"/><Key text="B"/><Key/><Key/>
+        <Key text="c"/><Key text="C"/><Key/><Key/>
+        <Key text="d"/><Key text="D"/><Key/><Key/>
+    </Keyset>
+    
+    <Keyset id="l_efgh">
+        <Key/><Key text="e"/><Key text="E"/><Key/>
+        <Key/><Key text="f"/><Key text="F"/><Key/>
+        <Key/><Key text="g"/><Key text="G"/><Key/>
+        <Key/><Key text="h"/><Key text="H"/><Key/>
+    </Keyset>
+    
+    <Keyset id="l_ijkl">
+        <Key/><Key/><Key text="i"/><Key text="I"/>
+        <Key/><Key/><Key text="j"/><Key text="J"/>
+        <Key/><Key/><Key text="k"/><Key text="K"/>
+        <Key/><Key/><Key text="l"/><Key text="L"/>
+    </Keyset>
+    
+    <Keyset id="l_mno">
+        <Key/><Key/><Key/><Key/>
+        <Key text="m"/><Key text="M"/><Key/><Key/>
+        <Key text="n"/><Key text="N"/><Key/><Key/>
+        <Key text="o"/><Key text="O"/><Key/><Key/>
+    </Keyset>
+    
+    <Keyset id="l_pqr">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key text="p"/><Key text="P"/><Key/>
+        <Key/><Key text="q"/><Key text="Q"/><Key/>
+        <Key/><Key text="r"/><Key text="R"/><Key/>
+    </Keyset>
+    
+    <Keyset id="l_stu">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key text="s"/><Key text="S"/>
+        <Key/><Key/><Key text="t"/><Key text="T"/>
+        <Key/><Key/><Key text="u"/><Key text="U"/>
+    </Keyset>
+    
+    <Keyset id="l_vw">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key text="v"/><Key text="V"/><Key/><Key/>
+        <Key text="w"/><Key text="W"/><Key/><Key/>
+    </Keyset>
+    
+    <Keyset id="l_xy">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key text="x"/><Key text="X"/><Key/>
+        <Key/><Key text="y"/><Key text="Y"/><Key/>
+    </Keyset>
+    
+    <Keyset id="l_z">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key text="z"/><Key text="Z"/>
+        <Key/><Key/><Key/><Key/>
+    </Keyset>
+    
+    <Keyset id="">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+    </Keyset>
+    
+    <Keyset id="">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+    </Keyset>
+    
+    <Keyset id="">
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+        <Key/><Key/><Key/><Key/>
+    </Keyset>
+    
+    
+</Keyboard>

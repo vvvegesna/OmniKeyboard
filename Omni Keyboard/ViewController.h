@@ -1,9 +1,9 @@
 //
 //  ViewController.h
-//  Omni Keyboard
+//  XMLParserTest
 //
-//  Created by Sky on 9/21/16.
-//  Copyright © 2016 Sky. All rights reserved.
+//  Created by Baker, Cody on 9/20/16.
+//  Copyright © 2016 UCHL. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
