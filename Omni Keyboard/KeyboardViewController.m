@@ -6,16 +6,16 @@
 //  Copyright © 2016 UCHL. All rights reserved.
 //
 
-#import "KeyboardController.h"
+#import "KeyboardViewController.h"
 #import "KeyboardParser.h"
 #import "Keyset.h"
 #import "Key.h"
 
-@interface KeyboardController ()
+@interface KeyboardViewController ()
 
 @end
 
-@implementation KeyboardController
+@implementation KeyboardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
