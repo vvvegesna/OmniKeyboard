@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EEDC8DF1D9A01B1005CCB55 /* KeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDC8DE1D9A01B1005CCB55 /* KeyboardView.m */; };
 		33B574401D93130200BD3C20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B5743F1D93130200BD3C20 /* main.m */; };
 		33B574431D93130200BD3C20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B574421D93130200BD3C20 /* AppDelegate.m */; };
-		33B574461D93130200BD3C20 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B574451D93130200BD3C20 /* ViewController.m */; };
+		33B574461D93130200BD3C20 /* KeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B574451D93130200BD3C20 /* KeyboardController.m */; };
 		33B574491D93130300BD3C20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B574471D93130300BD3C20 /* Main.storyboard */; };
 		33B5744B1D93130300BD3C20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B5744A1D93130300BD3C20 /* Assets.xcassets */; };
 		33B5744E1D93130300BD3C20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B5744C1D93130300BD3C20 /* LaunchScreen.storyboard */; };
@@ -21,12 +22,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EEDC8DD1D9A01B1005CCB55 /* KeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardView.h; sourceTree = "<group>"; };
+		0EEDC8DE1D9A01B1005CCB55 /* KeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardView.m; sourceTree = "<group>"; };
 		33B5743B1D93130200BD3C20 /* Omni Keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Omni Keyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B5743F1D93130200BD3C20 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		33B574411D93130200BD3C20 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		33B574421D93130200BD3C20 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		33B574441D93130200BD3C20 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		33B574451D93130200BD3C20 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		33B574441D93130200BD3C20 /* KeyboardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardController.h; sourceTree = "<group>"; };
+		33B574451D93130200BD3C20 /* KeyboardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardController.m; sourceTree = "<group>"; };
 		33B574481D93130300BD3C20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33B5744A1D93130300BD3C20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33B5744D1D93130300BD3C20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,8 +85,10 @@
 				33F392061D98DAE900BC1E43 /* Keyset.m */,
 				33B574411D93130200BD3C20 /* AppDelegate.h */,
 				33B574421D93130200BD3C20 /* AppDelegate.m */,
-				33B574441D93130200BD3C20 /* ViewController.h */,
-				33B574451D93130200BD3C20 /* ViewController.m */,
+				33B574441D93130200BD3C20 /* KeyboardController.h */,
+				33B574451D93130200BD3C20 /* KeyboardController.m */,
+				0EEDC8DD1D9A01B1005CCB55 /* KeyboardView.h */,
+				0EEDC8DE1D9A01B1005CCB55 /* KeyboardView.m */,
 				33B574471D93130300BD3C20 /* Main.storyboard */,
 				33B5744A1D93130300BD3C20 /* Assets.xcassets */,
 				33B5744C1D93130300BD3C20 /* LaunchScreen.storyboard */,
@@ -173,11 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33B574461D93130200BD3C20 /* ViewController.m in Sources */,
+				33B574461D93130200BD3C20 /* KeyboardController.m in Sources */,
 				33F392071D98DAE900BC1E43 /* Key.m in Sources */,
 				33B574431D93130200BD3C20 /* AppDelegate.m in Sources */,
 				33F3920A1D98DAE900BC1E43 /* Keyset.m in Sources */,
 				33F392091D98DAE900BC1E43 /* KeyboardParser.m in Sources */,
+				0EEDC8DF1D9A01B1005CCB55 /* KeyboardView.m in Sources */,
 				33B574401D93130200BD3C20 /* main.m in Sources */,
 				33F392081D98DAE900BC1E43 /* Keyboard.m in Sources */,
 			);

@@ -6,16 +6,16 @@
 //  Copyright © 2016 UCHL. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "KeyboardController.h"
 #import "KeyboardParser.h"
 #import "Keyset.h"
 #import "Key.h"
 
-@interface ViewController ()
+@interface KeyboardController ()
 
 @end
 
-@implementation ViewController
+@implementation KeyboardController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +27,7 @@
     
     Keyset* keyset1 = board.Keysets[@"l_abcd"];
     
-    Key* key1_1 = keyset1.keys[0];
+    Key* key1_1 = keyset1.keys[1];
     
     NSLog(@"Keyset: %@", keyset1);
     NSLog(@"Key: %@", key1_1);
