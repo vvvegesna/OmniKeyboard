@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
@@ -35,9 +34,13 @@
     NSLog(@"Key ['l_abcd'][2]'s text is: %@", key1_1.text);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)didPressConfig:(id)sender {
+    [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
+}
+
+- (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue
+{
+    
 }
 
 @end

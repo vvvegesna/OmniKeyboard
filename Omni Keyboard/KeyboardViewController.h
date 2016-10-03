@@ -11,5 +11,9 @@
 @interface KeyboardViewController : UIViewController
 
 
+- (IBAction)didPressConfig:(id)sender;
+
+- (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue;
+
 @end
 
