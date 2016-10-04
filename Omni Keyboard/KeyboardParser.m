@@ -41,17 +41,14 @@
  * Creates a keyboard object using an XML file.
  * @param path  The path to the XML file to parse. Does NOT include extension.
  */
--(Keyboard*)parseKeyboardXML:(NSString*)path
+-(Keyboard*)parseKeyboardFromXML:(NSString*)path
 {
     NSURL* xmlpath = [[NSBundle mainBundle] URLForResource:path withExtension:@"xml"];
     NSXMLParser* parser = [[NSXMLParser alloc] initWithContentsOfURL:xmlpath];
     
     [parser setDelegate:self];
     
-    NSLog(@"Should be starting to parse");
     [parser parse];
-    //[parser release];
-    //[xmlpath release];
     return self.keyboard;
 }
 

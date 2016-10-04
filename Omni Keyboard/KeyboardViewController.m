@@ -22,7 +22,7 @@
     
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
-    Keyboard* board = [parser parseKeyboardXML:@"Default"];
+    Keyboard* board = [parser parseKeyboardFromXML:@"Default"];
     
     Keyset* keyset1 = board.Keysets[@"l_abcd"];
     

@@ -51,6 +51,11 @@
 }
 */
 
+
+- (IBAction)didPressDone:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,8 +99,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)didPressDone:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-}
 @end

@@ -15,7 +15,7 @@
 
 -(KeyboardParser*)init;
 
--(Keyboard*)parseKeyboardXML:(NSString*)path;
+-(Keyboard*)parseKeyboardFromXML:(NSString*)path;
 
 - (void)parser:(NSXMLParser *)parser
 didStartElement:(NSString *)elementName
