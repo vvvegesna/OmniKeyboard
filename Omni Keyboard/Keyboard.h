@@ -15,7 +15,7 @@
 @property int columns;
 @property NSString* initialKeyset;
 
-@property NSDictionary* Keysets;
+@property NSDictionary* keysets;
 
 -(Keyboard*)initWithKeyset:(NSDictionary *)KeysetDict AndColumns:(int)columns AndRows:(int)rows AndInitialKeyset:(NSString*) initKeyset;
 

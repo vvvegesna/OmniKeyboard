@@ -18,7 +18,7 @@
     self = [super init];
     if(self)
     {
-        self.Keysets = KeysetDict;
+        self.keysets = KeysetDict;
         self.columns = columns;
         self.rows = rows;
         self.initialKeyset = initKeyset;

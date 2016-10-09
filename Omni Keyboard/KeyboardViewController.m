@@ -20,18 +20,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /*
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
-    Keyboard* board = [parser parseKeyboardFromXML:@"Default"];
+    NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
+    Keyboard* board = [parser parseKeyboardFromURL:url];
     
-    Keyset* keyset1 = board.Keysets[@"l_abcd"];
+    Keyset* keyset1 = board.keysets[@"l_abcd"];
     
     Key* key1_1 = keyset1.keys[1];
+    
     
     NSLog(@"Keyset: %@", keyset1);
     NSLog(@"Key: %@", key1_1);
     
     NSLog(@"Key ['l_abcd'][2]'s text is: %@", key1_1.text);
+    */
 }
 
 - (IBAction)didPressConfig:(id)sender {

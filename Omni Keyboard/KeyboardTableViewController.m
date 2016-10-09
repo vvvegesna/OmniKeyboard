@@ -1,27 +1,75 @@
 //
-//  ConfigTableViewController.m
+//  KeyboardTableViewController.m
 //  Omni Keyboard
 //
-//  Created by Sky on 10/2/16.
+//  Created by Sky on 10/9/16.
 //  Copyright © 2016 Sky. All rights reserved.
 //
 
-#import "ConfigTableViewController.h"
+#import "KeyboardTableViewController.h"
 
-@interface ConfigTableViewController ()
+/*
+ #import "KeyboardParser.h"
+ #import "Keyset.h"
+ #import "Key.h"
+ */
+
+@interface KeyboardTableViewController ()
 
 @end
 
-@implementation ConfigTableViewController
+@implementation KeyboardTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
+    NSURL* docDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSArray* docs = [self filesAtURL:docDir];
+    
+    NSArray* xmls = [docs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension='xml'"]];
+    
+    NSLog(@"URLS: %@", xmls);
+    
+    /*
+     KeyboardParser* parser = [[KeyboardParser alloc] init];
+     
+     Keyboard* keyboard = [parser parseKeyboardFromURL:docs[1]];
+     
+     NSLog(@"Keyboard: %@", keyboard);
+     
+     Keyset* keyset = keyboard.keysets[@"l_abcd"];
+     
+     NSLog(@"Keyset: %@", keyset);
+     
+     Key* key = keyset.keys[0];
+     
+     NSLog(@"Key: %@", key);
+     NSLog(@"Key's text: %@", key.text);
+     */
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(NSArray*)filesAtURL:(NSURL*)URL
+{
+    NSArray* directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:URL
+                                                              includingPropertiesForKeys:nil
+                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                   error:nil];
+    
+    if(directoryContent)
+    {
+        return directoryContent;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,52 +79,25 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-    return 3;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete implementation, return the number of rows
+    return 0;
+}
 
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"configCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
-    switch(indexPath.row)
-    {
-        case 0:
-            cell.textLabel.text = @"Keyboards";
-            break;
-        case 1:
-            cell.textLabel.text = @"Download";
-            break;
-        case 2:
-            cell.textLabel.text = @"Options";
-            break;
-    }
     
     return cell;
 }
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch(indexPath.row)
-    {
-        case 0:
-            // segue to KeyboardsTableViewController
-            [self performSegueWithIdentifier:@"ConfigToKeyboardTable" sender:self];
-            break;
-        case 1:
-            // segue to DownloadViewController
-            break;
-        case 2:
-            // segue to OptionsViewController
-            break;
-    }
-}
-
-- (IBAction)didPressDone:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -121,4 +142,5 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 @end

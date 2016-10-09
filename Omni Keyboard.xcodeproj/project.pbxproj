@@ -14,6 +14,7 @@
 		33B574491D93130300BD3C20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B574471D93130300BD3C20 /* Main.storyboard */; };
 		33B5744B1D93130300BD3C20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B5744A1D93130300BD3C20 /* Assets.xcassets */; };
 		33B5744E1D93130300BD3C20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B5744C1D93130300BD3C20 /* LaunchScreen.storyboard */; };
+		33C7F22E1DAACFFB00E25F9B /* KeyboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C7F22D1DAACFFB00E25F9B /* KeyboardTableViewController.m */; };
 		33F391FE1D98DA9100BC1E43 /* Default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33F391FD1D98DA9100BC1E43 /* Default.xml */; };
 		33F392071D98DAE900BC1E43 /* Key.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392001D98DAE900BC1E43 /* Key.m */; };
 		33F392081D98DAE900BC1E43 /* Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392021D98DAE900BC1E43 /* Keyboard.m */; };
@@ -34,6 +35,8 @@
 		33B5744A1D93130300BD3C20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33B5744D1D93130300BD3C20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33B5744F1D93130300BD3C20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33C7F22C1DAACFFB00E25F9B /* KeyboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardTableViewController.h; sourceTree = "<group>"; };
+		33C7F22D1DAACFFB00E25F9B /* KeyboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardTableViewController.m; sourceTree = "<group>"; };
 		33F391FD1D98DA9100BC1E43 /* Default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Default.xml; sourceTree = "<group>"; };
 		33F391FF1D98DAE900BC1E43 /* Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Key.h; sourceTree = "<group>"; };
 		33F392001D98DAE900BC1E43 /* Key.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Key.m; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 				33B574451D93130200BD3C20 /* KeyboardViewController.m */,
 				33590B6D1DA211C0001D9F8A /* ConfigTableViewController.h */,
 				33590B6E1DA211C0001D9F8A /* ConfigTableViewController.m */,
+				33C7F22C1DAACFFB00E25F9B /* KeyboardTableViewController.h */,
+				33C7F22D1DAACFFB00E25F9B /* KeyboardTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B574461D93130200BD3C20 /* KeyboardViewController.m in Sources */,
+				33C7F22E1DAACFFB00E25F9B /* KeyboardTableViewController.m in Sources */,
 				33F392071D98DAE900BC1E43 /* Key.m in Sources */,
 				33B574431D93130200BD3C20 /* AppDelegate.m in Sources */,
 				33590B6F1DA211C0001D9F8A /* ConfigTableViewController.m in Sources */,
