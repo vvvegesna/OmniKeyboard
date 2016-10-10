@@ -10,4 +10,6 @@
 
 @interface KeyboardTableViewController : UITableViewController
 
+-(IBAction)didPressDone:(id)sender;
+
 @end

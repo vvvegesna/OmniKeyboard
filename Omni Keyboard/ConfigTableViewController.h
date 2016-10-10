@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ConfigTableViewController : UITableViewController
+
 - (IBAction)didPressDone:(id)sender;
 
 @end

@@ -15,6 +15,9 @@
  */
 
 @interface KeyboardTableViewController ()
+{
+    NSArray* _XMLURLs;
+}
 
 @end
 
@@ -25,34 +28,11 @@
         
     NSURL* docDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
+    //NSLog(@"Documents Directory: %@", docDir);
+    
     NSArray* docs = [self filesAtURL:docDir];
     
-    NSArray* xmls = [docs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension='xml'"]];
-    
-    NSLog(@"URLS: %@", xmls);
-    
-    /*
-     KeyboardParser* parser = [[KeyboardParser alloc] init];
-     
-     Keyboard* keyboard = [parser parseKeyboardFromURL:docs[1]];
-     
-     NSLog(@"Keyboard: %@", keyboard);
-     
-     Keyset* keyset = keyboard.keysets[@"l_abcd"];
-     
-     NSLog(@"Keyset: %@", keyset);
-     
-     Key* key = keyset.keys[0];
-     
-     NSLog(@"Key: %@", key);
-     NSLog(@"Key's text: %@", key.text);
-     */
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _XMLURLs = [docs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension='xml'"]];
 }
 
 -(NSArray*)filesAtURL:(NSURL*)URL
@@ -80,24 +60,36 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    
+    return [_XMLURLs count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"keyboardCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    NSURL* url = ((NSURL*)[_XMLURLs objectAtIndex:indexPath.row]);
+    url = [url URLByDeletingPathExtension];
+    NSString* name = [url lastPathComponent];
+    
+    cell.textLabel.text = name;
     
     return cell;
 }
-*/
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: parse xml file, update model, update view
+}
+- (IBAction)didPressDone:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
 
 /*
 // Override to support conditional editing of the table view.
