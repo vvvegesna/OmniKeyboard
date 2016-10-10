@@ -77,7 +77,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="gjE-mh-OiG" kind="show" identifier="ConfigToKeyboardTable" id="jdL-MK-JsF"/>
+                        <segue destination="gjE-mh-OiG" kind="show" identifier="ConfigToKeyboardSelectorTable" id="jdL-MK-JsF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPk-7P-s45" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,13 +88,13 @@
         <!--Keyboards-->
         <scene sceneID="Acd-q5-d8u">
             <objects>
-                <tableViewController id="gjE-mh-OiG" customClass="KeyboardTableViewController" sceneMemberID="viewController">
+                <tableViewController id="gjE-mh-OiG" customClass="KeyboardSelectorTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bjz-mM-6qz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="keyboardCell" id="bGu-aB-0He">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="keyboardSelectorCell" id="bGu-aB-0He">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bGu-aB-0He" id="i0F-2g-9ik">

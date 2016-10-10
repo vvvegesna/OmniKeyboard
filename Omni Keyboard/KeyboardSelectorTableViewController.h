@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KeyboardTableViewController : UITableViewController
+@interface KeyboardSelectorTableViewController : UITableViewController
 
 -(IBAction)didPressDone:(id)sender;
 

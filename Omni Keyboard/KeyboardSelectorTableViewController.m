@@ -6,7 +6,7 @@
 //  Copyright © 2016 Sky. All rights reserved.
 //
 
-#import "KeyboardTableViewController.h"
+#import "KeyboardSelectorTableViewController.h"
 
 /*
  #import "KeyboardParser.h"
@@ -14,14 +14,14 @@
  #import "Key.h"
  */
 
-@interface KeyboardTableViewController ()
+@interface KeyboardSelectorTableViewController ()
 {
     NSArray* _XMLURLs;
 }
 
 @end
 
-@implementation KeyboardTableViewController
+@implementation KeyboardSelectorTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,7 +71,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"keyboardCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"keyboardSelectorCell" forIndexPath:indexPath];
     
     // Configure the cell...
     NSURL* url = ((NSURL*)[_XMLURLs objectAtIndex:indexPath.row]);

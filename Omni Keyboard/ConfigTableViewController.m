@@ -63,7 +63,7 @@
     {
         case 0:
             // segue to KeyboardsTableViewController
-            [self performSegueWithIdentifier:@"ConfigToKeyboardTable" sender:self];
+            [self performSegueWithIdentifier:@"ConfigToKeyboardSelectorTable" sender:self];
             break;
         case 1:
             // segue to DownloadViewController
