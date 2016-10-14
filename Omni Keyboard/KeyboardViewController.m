@@ -16,6 +16,8 @@
     int _rows;
     int _columns;
     NSMutableArray* _buttons;
+    Keyset* _currentKeyset;
+    Keyboard* _board;
 }
 @end
 
@@ -24,26 +26,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    /*
     int rows = 4;
     int columns = 4;
-    
-    _buttons = [[NSMutableArray alloc] init];
-    
-    NSArray* strings = [[NSArray alloc] initWithObjects:
-                        @"ab", @"cd", @"ef", @"gh",
-                        @"ij", @"kl", @"mn", @"op",
-                        @"qr", @"st", @"", @"wx",
-                        @"yz", @".", @",", @"!?", nil];
+     
+     
+     NSArray* strings = [[NSArray alloc] initWithObjects:
+     @"ab", @"cd", @"ef", @"gh",
+     @"ij", @"kl", @"mn", @"op",
+     @"qr", @"st", @"", @"wx",
+     @"yz", @".", @",", @"!?", nil];
     
     [self newLayoutWithRows:rows AndColumns:columns];
     [self updateLayoutWithStrings:strings];
-    /*
+     */
+    _buttons = [[NSMutableArray alloc] init];
+    
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
     NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
-    Keyboard* board = [parser parseKeyboardFromURL:url];
+    _board = [parser parseKeyboardFromURL:url];
     
+    _currentKeyset = _board.keysets[_board.initialKeyset];
+    
+    [self newLayoutWithRows:_board.rows AndColumns:_board.columns];
+    [self updateLayoutWithStrings:[_currentKeyset getKeyStrings]];
+    
+    /*
     Keyset* keyset1 = board.keysets[@"l_abcd"];
     
     Key* key1_1 = keyset1.keys[1];
@@ -147,7 +156,35 @@
 
 -(void)pressedKeyWithIndex:(int)index
 {
-    //UIButton* btn;
+    Key* pressedKey = _currentKeyset.keys[index];
+    NSString* next = pressedKey.nextKeyset;
+    
+    if(next != nil)
+    {
+        NSString* linkName = pressedKey.nextKeyset;
+        Keyset* destinationKeyset = _board.keysets[linkName];
+        _currentKeyset = destinationKeyset;
+        [self updateLayoutWithStrings:[destinationKeyset getKeyStrings]];
+        
+        return;
+    }
+    
+    if(pressedKey.action != nil)
+    {
+        return;
+    }
+    
+    if(pressedKey.text != nil)
+    {
+        NSLog(@"%@", pressedKey.text);
+        _currentKeyset = _board.keysets[_board.initialKeyset];
+        [self updateLayoutWithStrings:[_currentKeyset getKeyStrings]];
+        
+    }
+    
+    
+    
+    /*
     NSArray* newStr;
     
     switch(index)
@@ -162,6 +199,7 @@
             [self updateLayoutWithStrings:newStr];
             break;
     }
+    */
 }
 
 - (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue

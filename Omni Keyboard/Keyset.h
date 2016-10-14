@@ -13,5 +13,6 @@
 @property NSArray* keys;
 
 -(Keyset*)initWithKeys:(NSArray*)keys;
+-(NSArray*)getKeyStrings;
 
 @end

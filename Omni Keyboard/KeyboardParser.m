@@ -75,7 +75,7 @@ didStartElement:(NSString *)elementName
     else if([elementName isEqualToString:@"Key"])
     {
         self->text = attributeDict[@"text"];
-        self->nextKeyset = attributeDict[@"keyset"];
+        self->nextKeyset = attributeDict[@"link"];
         self->action = attributeDict[@"action"];
     }
 }
