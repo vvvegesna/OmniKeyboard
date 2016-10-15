@@ -16,8 +16,9 @@
     int _rows;
     int _columns;
     NSMutableArray* _buttons;
-    Keyset* _currentKeyset;
+    
     Keyboard* _board;
+    Keyset* _currentKeyset;
 }
 @end
 
@@ -26,20 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    /*
-    int rows = 4;
-    int columns = 4;
-     
-     
-     NSArray* strings = [[NSArray alloc] initWithObjects:
-     @"ab", @"cd", @"ef", @"gh",
-     @"ij", @"kl", @"mn", @"op",
-     @"qr", @"st", @"", @"wx",
-     @"yz", @".", @",", @"!?", nil];
-    
-    [self newLayoutWithRows:rows AndColumns:columns];
-    [self updateLayoutWithStrings:strings];
-     */
     _buttons = [[NSMutableArray alloc] init];
     
     KeyboardParser* parser = [[KeyboardParser alloc] init];
@@ -49,27 +36,15 @@
     
     _currentKeyset = _board.keysets[_board.initialKeyset];
     
-    [self newLayoutWithRows:_board.rows AndColumns:_board.columns];
-    [self updateLayoutWithStrings:[_currentKeyset getKeyStrings]];
-    
-    /*
-    Keyset* keyset1 = board.keysets[@"l_abcd"];
-    
-    Key* key1_1 = keyset1.keys[1];
-    
-    
-    NSLog(@"Keyset: %@", keyset1);
-    NSLog(@"Key: %@", key1_1);
-    
-    NSLog(@"Key ['l_abcd'][2]'s text is: %@", key1_1.text);
-    */
+    [self newLayoutWithRows:_board.rows columns:_board.columns];
+    [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
 }
 
 - (IBAction)didPressConfig:(id)sender {
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
 }
 
--(void)newLayoutWithRows:(int)rows AndColumns:(int)columns
+-(void)newLayoutWithRows:(int)rows columns:(int)columns
 {
     self->_rows = rows;
     self->_columns = columns;
@@ -101,14 +76,14 @@
                                widthPerButton,
                                heightPerButton);
         [btn setTitle:@"" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(didPressTest:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(didPressKey:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = index;
         [_buttons addObject:btn];
         [self.view addSubview:btn];
     }
     
     for(int j = _buttons.count - 1; j >= index; --j)
-    {   // Too many buttons, get rid of extras.
+    {   // Too many buttons, get rid of extras. Removing from the end should be faster.
         UIButton* btn = _buttons[j];
         
         [btn removeFromSuperview];
@@ -116,7 +91,13 @@
     }
 }
 
--(void)updateLayoutWithStrings:(NSArray*)strings
+-(void)changeLayoutWithKeysetID:(NSString*)keysetID
+{
+    _currentKeyset = _board.keysets[keysetID];
+    [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+}
+
+-(void)updateLayoutViewWithStrings:(NSArray*)strings
 {
     int index;
     
@@ -147,59 +128,34 @@
     // If there were even more strings, just ignore them.
 }
 
--(IBAction)didPressTest:(id)sender
+-(IBAction)didPressKey:(id)sender
 {
     UIButton* btn = sender;
     
-    [self pressedKeyWithIndex:btn.tag];
+    [self didPressKeyWithIndex:btn.tag];
 }
 
--(void)pressedKeyWithIndex:(int)index
+-(void)didPressKeyWithIndex:(int)index
 {
     Key* pressedKey = _currentKeyset.keys[index];
-    NSString* next = pressedKey.nextKeyset;
-    
-    if(next != nil)
-    {
-        NSString* linkName = pressedKey.nextKeyset;
-        Keyset* destinationKeyset = _board.keysets[linkName];
-        _currentKeyset = destinationKeyset;
-        [self updateLayoutWithStrings:[destinationKeyset getKeyStrings]];
-        
-        return;
-    }
     
     if(pressedKey.action != nil)
     {
         return;
     }
     
+    if(pressedKey.nextKeysetID != nil)
+    {
+        [self changeLayoutWithKeysetID:pressedKey.nextKeysetID];
+        
+        return;
+    }
+    
     if(pressedKey.text != nil)
     {
         NSLog(@"%@", pressedKey.text);
-        _currentKeyset = _board.keysets[_board.initialKeyset];
-        [self updateLayoutWithStrings:[_currentKeyset getKeyStrings]];
-        
+        [self changeLayoutWithKeysetID:_board.initialKeyset];
     }
-    
-    
-    
-    /*
-    NSArray* newStr;
-    
-    switch(index)
-    {
-        case 1:
-            newStr = [[NSArray alloc] initWithObjects:
-                      @"1", @"2", @"3", @"4",
-                      @"5", @"6", @"7", @"8",
-                      @"9", @"",@"11",@"12", nil];
-            
-            [self newLayoutWithRows:3 AndColumns:4];
-            [self updateLayoutWithStrings:newStr];
-            break;
-    }
-    */
 }
 
 - (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue

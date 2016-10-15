@@ -24,7 +24,7 @@
     NSMutableArray* keysArray;
     
     NSString* text;
-    NSString* nextKeyset;
+    NSString* nextKeysetID;
     NSString* action;
     
 }
@@ -75,7 +75,7 @@ didStartElement:(NSString *)elementName
     else if([elementName isEqualToString:@"Key"])
     {
         self->text = attributeDict[@"text"];
-        self->nextKeyset = attributeDict[@"link"];
+        self->nextKeysetID = attributeDict[@"link"];
         self->action = attributeDict[@"action"];
     }
 }
@@ -99,7 +99,7 @@ didStartElement:(NSString *)elementName
     else if([elementName isEqualToString:@"Key"])
     {
         [keysArray addObject:[[Key alloc] initWithText:text
-                                         AndNextKeyset:nextKeyset
+                                         AndNextKeysetID:nextKeysetID
                                              AndAction:action]];
     }
 }

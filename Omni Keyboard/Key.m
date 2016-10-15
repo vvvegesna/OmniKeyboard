@@ -11,14 +11,14 @@
 @implementation Key
 
 -(Key*)initWithText:(NSString*)text
-      AndNextKeyset:(NSString*)nextKeyset
+      AndNextKeysetID:(NSString*)nextKeysetID
           AndAction:(NSString*)action
 {
     self = [super init];
     if(self)
     {
         self.text = text;
-        self.nextKeyset  = nextKeyset;
+        self.nextKeysetID  = nextKeysetID;
         self.action = action;
     }
     return self;

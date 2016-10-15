@@ -12,11 +12,11 @@
 
 
 @property NSString* text;
-@property NSString* nextKeyset;
+@property NSString* nextKeysetID;
 @property NSString* action;
 
 -(Key*)initWithText:(NSString*)text
-      AndNextKeyset:(NSString*)nextKeyset
+      AndNextKeysetID:(NSString*)nextKeysetID
           AndAction:(NSString*)action;
 
 @end
