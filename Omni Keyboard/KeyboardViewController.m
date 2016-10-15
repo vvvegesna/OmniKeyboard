@@ -34,8 +34,23 @@
     NSLog(@"Key ['l_abcd'][2]'s text is: %@", key1_1.text);
 }
 
+- (IBAction)cuttoboard:(id)sender {
+    UIPasteboard *cp = [UIPasteboard generalPasteboard];
+    [cp setString: [_textView text]];
+    _textView.text = @"";
+}
+
+- (IBAction)cleartext:(id)sender {
+    _textView.text = @"";
+}
+
 - (IBAction)didPressConfig:(id)sender {
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
+}
+
+- (IBAction)copytoboard:(id)sender {
+    UIPasteboard *cp = [UIPasteboard generalPasteboard];
+    [cp setString: [_textView text]];
 }
 
 - (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue
