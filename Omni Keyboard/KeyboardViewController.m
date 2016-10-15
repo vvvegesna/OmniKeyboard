@@ -40,8 +40,23 @@
     [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
 }
 
+- (IBAction)cuttoboard:(id)sender {
+    UIPasteboard *cp = [UIPasteboard generalPasteboard];
+    [cp setString: [_textView text]];
+    _textView.text = @"";
+}
+
+- (IBAction)cleartext:(id)sender {
+    _textView.text = @"";
+}
+
 - (IBAction)didPressConfig:(id)sender {
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
+}
+
+- (IBAction)copytoboard:(id)sender {
+    UIPasteboard *cp = [UIPasteboard generalPasteboard];
+    [cp setString: [_textView text]];
 }
 
 -(void)newLayoutWithRows:(int)rows columns:(int)columns
