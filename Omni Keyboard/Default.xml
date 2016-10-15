@@ -3,7 +3,7 @@
         <Key text="abcd" link="l_abcd"/><Key text="efgh" link="l_efgh"/><Key text="ijkl" link="l_ijkl"/><Key text="util1"/>
         <Key text="mno" link="l_mno"/><Key text="pqr" link="l_pqr"/><Key text="stu" link="l_stu"/><Key text="num"/>
         <Key text="vw" link="l_vw"/><Key text="xy" link="l_xy"/><Key text="z" link="l_z"/><Key text="del"/>
-        <Key text="space"/><Key text="space"/><Key text="space"/><Key text="enter"/>
+        <Key text="space" action="SPACE"/><Key text="space" action="SPACE"/><Key text="space" action="SPACE"/><Key text="enter"/>
     </Keyset>
     
     <Keyset id="l_abcd">

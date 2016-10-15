@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface KeyboardViewController : UIViewController
-- (IBAction)cuttoboard:(id)sender;
-- (IBAction)cleartext:(id)sender;
 - (IBAction)didPressConfig:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-- (IBAction)copytoboard:(id)sender;
+
+- (IBAction)didPressCopy:(id)sender;
+- (IBAction)didPressCut:(id)sender;
+- (IBAction)didPressClear:(id)sender;
 
 - (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue;
 

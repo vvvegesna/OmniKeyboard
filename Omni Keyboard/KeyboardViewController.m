@@ -40,23 +40,23 @@
     [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
 }
 
-- (IBAction)cuttoboard:(id)sender {
+- (IBAction)didPressCut:(id)sender {
     UIPasteboard *cp = [UIPasteboard generalPasteboard];
     [cp setString: [_textView text]];
     _textView.text = @"";
 }
 
-- (IBAction)cleartext:(id)sender {
+- (IBAction)didPressCopy:(id)sender {
+    UIPasteboard *cp = [UIPasteboard generalPasteboard];
+    [cp setString: [_textView text]];
+}
+
+- (IBAction)didPressClear:(id)sender {
     _textView.text = @"";
 }
 
 - (IBAction)didPressConfig:(id)sender {
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
-}
-
-- (IBAction)copytoboard:(id)sender {
-    UIPasteboard *cp = [UIPasteboard generalPasteboard];
-    [cp setString: [_textView text]];
 }
 
 -(void)newLayoutWithRows:(int)rows columns:(int)columns
@@ -156,6 +156,10 @@
     
     if(pressedKey.action != nil)
     {
+        if([pressedKey.action isEqualToString:@"SPACE"])
+        {
+            _textView.text = [_textView.text stringByAppendingString:@" "];
+        }
         return;
     }
     
@@ -168,7 +172,8 @@
     
     if(pressedKey.text != nil)
     {
-        NSLog(@"%@", pressedKey.text);
+        //NSLog(@"%@", pressedKey.text);
+        _textView.text = [_textView.text stringByAppendingString:pressedKey.text];
         [self changeLayoutWithKeysetID:_board.initialKeyset];
     }
 }
