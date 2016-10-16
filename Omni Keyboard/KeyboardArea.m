@@ -10,6 +10,9 @@
 
 @implementation KeyboardArea
 
+@synthesize delegate = _delegate;
+@synthesize index = _index;
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -21,12 +24,20 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Touches happened with index %i", self.tag);
+    /* Check to see if the touch is within a key.
+     * If so, tell the delegate which key and that it was a TouchDown.
+     */
+    
+    [_delegate keyActivated:_index action:ActionTypeTouchDown];
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Touches ended with index %i", self.tag);
+    /* Check to see if the lift is within a key.
+     * If so, tell the delegate which key and that it was a LiftUp.
+     */
+    
+    [_delegate keyActivated:_index action:ActionTypeLiftUp];
 }
 
 @end

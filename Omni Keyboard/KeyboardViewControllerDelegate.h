@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NS_ENUM(NSUInteger, ActionType)
+{
+    ActionTypeTouchDown,
+    ActionTypeLiftUp
+};
+
 @protocol KeyboardViewControllerDelegate <NSObject>
+
+-(void)keyActivated:(int)index action:(ActionType)action;
 
 @end

@@ -24,7 +24,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AUz-nQ-tXL">
+                            <view tag="10" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AUz-nQ-tXL" customClass="KeyboardArea">
                                 <rect key="frame" x="0.0" y="316" width="320" height="252"/>
                                 <color key="backgroundColor" white="0.74727909482758625" alpha="1" colorSpace="calibratedWhite"/>
                             </view>

@@ -11,6 +11,8 @@
 #import "Keyset.h"
 #import "Key.h"
 
+#import "KeyboardArea.h"
+
 @interface KeyboardViewController ()
 {
     int _rows;
@@ -27,13 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    /*
-    UIButton* t = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    t.frame = CGRectMake(0, 0, 50, 50);
-    [t setTitle:@"TEST" forState:UIControlStateNormal];
-        
-    [self.keyboardView addSubview:t];
-    */
+    _keyboardView.delegate = self;
     
     _buttons = [[NSMutableArray alloc] init];
     
@@ -44,8 +40,8 @@
     
     _currentKeyset = _board.keysets[_board.initialKeyset];
     
-    [self newLayoutWithRows:_board.rows columns:_board.columns];
-    [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+    //[self newLayoutWithRows:_board.rows columns:_board.columns];
+    //[self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
 }
 
 - (IBAction)didPressCut:(id)sender {
@@ -159,9 +155,21 @@
     [self didPressKeyWithIndex:btn.tag];
 }
 
+-(void)keyActivated:(int)index action:(ActionType)action
+{
+    NSLog(@"Key with index %i activated with action ID %u", index, action);
+    
+    if(action == ActionTypeTouchDown)
+    {
+        NSLog(@"Action was touch down");
+    }    
+}
+
 -(void)didPressKeyWithIndex:(int)index
 {
     Key* pressedKey = _currentKeyset.keys[index];
+    
+    
     
     if(pressedKey.action != nil)
     {

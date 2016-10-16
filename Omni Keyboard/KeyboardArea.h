@@ -10,7 +10,12 @@
 #import "KeyboardViewControllerDelegate.h"
 
 @interface KeyboardArea : UIView
+{
+    id _delegate;
+    int _index;
+}
 
-@property (nonatomic, assign) id <KeyboardViewControllerDelegate> delegate;
+@property id <KeyboardViewControllerDelegate> delegate;
+@property int index;
 
 @end
