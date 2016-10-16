@@ -19,11 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xpx-TW-FUp">
-                                <rect key="frame" x="0.0" y="64" width="320" height="221"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="252"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AUz-nQ-tXL">
+                                <rect key="frame" x="0.0" y="316" width="320" height="252"/>
+                                <color key="backgroundColor" white="0.74727909482758625" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -55,6 +59,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="keyboardView" destination="AUz-nQ-tXL" id="n8K-DO-DIf"/>
                         <outlet property="textView" destination="xpx-TW-FUp" id="tQR-TY-pxU"/>
                         <segue destination="0z9-zg-YOl" kind="show" identifier="keyboardToConfig" id="rKl-NO-cqQ"/>
                     </connections>

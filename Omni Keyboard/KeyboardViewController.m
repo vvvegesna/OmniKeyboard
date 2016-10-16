@@ -27,6 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /*
+    UIButton* t = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    t.frame = CGRectMake(0, 0, 50, 50);
+    [t setTitle:@"TEST" forState:UIControlStateNormal];
+        
+    [self.keyboardView addSubview:t];
+    */
+    
     _buttons = [[NSMutableArray alloc] init];
     
     KeyboardParser* parser = [[KeyboardParser alloc] init];
@@ -64,9 +72,10 @@
     self->_rows = rows;
     self->_columns = columns;
     
-    
-    int usableWidth = self.view.bounds.size.width;
-    int usableHeight = (1.0/2.0) * self.view.bounds.size.height;
+    int usableWidth = _keyboardView.bounds.size.width;
+    int usableHeight = _keyboardView.bounds.size.height;
+    //int usableWidth = self.view.bounds.size.width;
+    //int usableHeight = (1.0/2.0) * self.view.bounds.size.height;
     
     int startingHeight = self.view.bounds.size.height - usableHeight;
     

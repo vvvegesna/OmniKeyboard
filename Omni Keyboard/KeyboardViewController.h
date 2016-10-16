@@ -12,6 +12,7 @@
 - (IBAction)didPressConfig:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIView *keyboardView;
 
 - (IBAction)didPressCopy:(id)sender;
 - (IBAction)didPressCut:(id)sender;
