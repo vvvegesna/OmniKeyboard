@@ -32,17 +32,17 @@
                         <leftBarButtonItems>
                             <barButtonItem title="Clear" id="0Nx-Ft-5XV">
                                 <connections>
-                                    <action selector="cleartext:" destination="BYZ-38-t0r" id="IWq-cY-Drd"/>
+                                    <action selector="didPressClear:" destination="BYZ-38-t0r" id="kSZ-ID-zJ0"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Cut" id="azO-nE-z29">
                                 <connections>
-                                    <action selector="cuttoboard:" destination="BYZ-38-t0r" id="Qw3-LT-KsS"/>
+                                    <action selector="didPressCut:" destination="BYZ-38-t0r" id="Cbc-aF-ZSu"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Copy" id="SI1-n9-DIA">
                                 <connections>
-                                    <action selector="copytoboard:" destination="BYZ-38-t0r" id="7Jv-2v-Sjn"/>
+                                    <action selector="didPressCopy:" destination="BYZ-38-t0r" id="mUa-bp-PFf"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
