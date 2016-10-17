@@ -11,16 +11,14 @@
 #import "Keyset.h"
 #import "Key.h"
 
-#import "KeyboardArea.h"
+#import "KeyAreaViewController.h"
 
 @interface KeyboardViewController ()
 {
-    int _rows;
-    int _columns;
-    NSMutableArray* _buttons;
-    
     Keyboard* _board;
     Keyset* _currentKeyset;
+    
+    KeyAreaViewController* _keyArea;
 }
 @end
 
@@ -29,9 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _keyboardView.delegate = self;
-    
-    _buttons = [[NSMutableArray alloc] init];
+    //_buttons = [[NSMutableArray alloc] init];
     
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
@@ -40,8 +36,13 @@
     
     _currentKeyset = _board.keysets[_board.initialKeyset];
     
-    //[self newLayoutWithRows:_board.rows columns:_board.columns];
-    //[self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+    [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
+    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+    
+    /*
+    [self newLayoutWithRows:_board.rows columns:_board.columns];
+    [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+     */
 }
 
 - (IBAction)didPressCut:(id)sender {
@@ -63,13 +64,23 @@
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
 }
 
+-(void)changeLayoutWithKeysetID:(NSString*)keysetID
+{
+    _currentKeyset = _board.keysets[keysetID];
+    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+}
+
+/*
 -(void)newLayoutWithRows:(int)rows columns:(int)columns
 {
+    
     self->_rows = rows;
     self->_columns = columns;
     
-    int usableWidth = _keyboardView.bounds.size.width;
-    int usableHeight = _keyboardView.bounds.size.height;
+    //int usableWidth = _keyArea
+    
+    int usableWidth = _keyArea.view.bounds.size.width;//_keyboardView.bounds.size.width;
+    int usableHeight = _keyArea.view.bounds.size.height;//_keyboardView.bounds.size.height;
     //int usableWidth = self.view.bounds.size.width;
     //int usableHeight = (1.0/2.0) * self.view.bounds.size.height;
     
@@ -111,12 +122,6 @@
     }
 }
 
--(void)changeLayoutWithKeysetID:(NSString*)keysetID
-{
-    _currentKeyset = _board.keysets[keysetID];
-    [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
-}
-
 -(void)updateLayoutViewWithStrings:(NSArray*)strings
 {
     int index;
@@ -147,29 +152,20 @@
     
     // If there were even more strings, just ignore them.
 }
+*/
 
--(IBAction)didPressKey:(id)sender
+-(void)keyUsed:(int)index type:(ActionType)type
 {
-    UIButton* btn = sender;
+    /*
+    NSLog(@"Key with index %i activated with action ID %u", index, type);
     
-    [self didPressKeyWithIndex:btn.tag];
-}
-
--(void)keyActivated:(int)index action:(ActionType)action
-{
-    NSLog(@"Key with index %i activated with action ID %u", index, action);
-    
-    if(action == ActionTypeTouchDown)
+    if(type == ActionTypeTouchDown)
     {
         NSLog(@"Action was touch down");
-    }    
-}
-
--(void)didPressKeyWithIndex:(int)index
-{
+    }
+    */
+    
     Key* pressedKey = _currentKeyset.keys[index];
-    
-    
     
     if(pressedKey.action != nil)
     {
@@ -189,14 +185,20 @@
     
     if(pressedKey.text != nil)
     {
-        //NSLog(@"%@", pressedKey.text);
         _textView.text = [_textView.text stringByAppendingString:pressedKey.text];
         [self changeLayoutWithKeysetID:_board.initialKeyset];
     }
 }
 
-- (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    if([segue.identifier isEqualToString:@"keyboardEmbedsKeyArea"])
+    {
+        _keyArea = segue.destinationViewController;
+        _keyArea.delegate = self;
+    }
+    
     
 }
 

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef NS_ENUM(NSUInteger, ActionType)
 {
     ActionTypeTouchDown,
@@ -17,6 +16,6 @@ typedef NS_ENUM(NSUInteger, ActionType)
 
 @protocol KeyboardViewControllerDelegate <NSObject>
 
--(void)keyActivated:(int)index action:(ActionType)action;
+-(void)keyUsed:(int)index type:(ActionType)type;
 
 @end

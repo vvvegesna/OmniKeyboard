@@ -9,21 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "KeyboardViewControllerDelegate.h"
 
-@class KeyboardArea;
-
 @interface KeyboardViewController : UIViewController <KeyboardViewControllerDelegate>
-- (IBAction)didPressConfig:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet KeyboardArea *keyboardView;
 
+
+
+- (IBAction)didPressConfig:(id)sender;
 - (IBAction)didPressCopy:(id)sender;
 - (IBAction)didPressCut:(id)sender;
 - (IBAction)didPressClear:(id)sender;
 
-- (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue;
-
--(void)keyActivated:(int)index action:(ActionType)action;
+-(void)keyUsed:(int)index type:(ActionType)type;
 
 @end
 

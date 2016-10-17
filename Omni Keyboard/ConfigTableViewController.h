@@ -10,6 +10,6 @@
 
 @interface ConfigTableViewController : UITableViewController
 
-- (IBAction)didPressDone:(id)sender;
+-(IBAction)didPressDone:(id)sender;
 
 @end
