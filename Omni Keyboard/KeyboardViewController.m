@@ -172,9 +172,30 @@
     
     if(pressedKey.text != nil)
     {
-        //NSLog(@"%@", pressedKey.text);
-        _textView.text = [_textView.text stringByAppendingString:pressedKey.text];
-        [self changeLayoutWithKeysetID:_board.initialKeyset];
+        if([pressedKey.text isEqualToString:@"util1"])
+        {
+            NSLog(@"detected util1 press");
+            
+            NSMutableArray* strings = [[NSMutableArray alloc] init];
+            
+            for(int i = 0; i < 4*6; ++i)
+            {
+                [strings addObject:[NSString stringWithFormat:@"%i", i]];
+            }
+            
+            [self newLayoutWithRows:4 columns:6];
+            [self updateLayoutViewWithStrings:strings];
+            
+            
+        }
+        else
+        {
+            
+            //NSLog(@"%@", pressedKey.text);
+            _textView.text = [_textView.text stringByAppendingString:pressedKey.text];
+            [self changeLayoutWithKeysetID:_board.initialKeyset];
+            
+        }
     }
 }
 
