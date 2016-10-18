@@ -14,7 +14,7 @@
 
 @property id <KeyboardViewControllerDelegate> delegate;
 
-
+-(KeyAreaViewController*)initWithFrame:(CGRect)frame;
 
 -(void)newLayoutWithRows:(int)rows columns:(int)columns;
 

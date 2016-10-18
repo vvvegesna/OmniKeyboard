@@ -23,10 +23,24 @@
 
 @synthesize delegate = _delegate;
 
+-(KeyAreaViewController*)initWithFrame:(CGRect)frame
+{
+    self = [super init];
+    if(self)
+    {
+        _keys = [[NSMutableArray alloc] init];
+        UIView* view = [[UIView alloc] initWithFrame:frame];
+        [view setBackgroundColor:[UIColor blackColor]];
+        
+        self.view = view;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _keys = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,17 +71,17 @@
     
     for(; index < rows*columns; ++index)
     {   // Too few old buttons, need to make new ones.
+        
+        //NSLog(@"adding button");
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         btn.frame = CGRectMake( (index%columns)*widthPerButton,
                                (index/columns)*heightPerButton,
                                widthPerButton,
                                heightPerButton);
-        [btn setTitle:@"" forState:UIControlStateNormal];
+        
+        [btn setTitle:@"exp" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(didPressKey:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = index;
-        
-        [btn setUserInteractionEnabled:NO];
-        
         
         [_keys addObject:btn];
         [self.view addSubview:btn];
@@ -102,7 +116,6 @@
         //if([key hitTest:[self.view convertPoint:location toView:key] withEvent:nil])
         if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
         {
-            //NSLog(@"The button with index %i detected something", key.tag);
             index = key.tag;
             break;
         }
