@@ -65,6 +65,10 @@
         [btn setTitle:@"" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(didPressKey:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = index;
+        
+        [btn setUserInteractionEnabled:NO];
+        
+        
         [_keys addObject:btn];
         [self.view addSubview:btn];
     }
@@ -85,6 +89,28 @@
     
     [_delegate keyUsed:btn.tag type:ActionTypeTouchDown];
 }
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    int index = -1;
+    
+    UITouch* touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    
+    for(UIButton* key in _keys)
+    {
+        //if([key hitTest:[self.view convertPoint:location toView:key] withEvent:nil])
+        if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
+        {
+            //NSLog(@"The button with index %i detected something", key.tag);
+            index = key.tag;
+            break;
+        }
+    }
+    
+    if(index != -1 ) [_delegate keyUsed:index type:ActionTypeTouchDown];
+}
+
 
 -(void)updateLayoutViewWithStrings:(NSArray*)strings
 {

@@ -9,6 +9,9 @@
 #import "ConfigTableViewController.h"
 
 @interface ConfigTableViewController ()
+{
+    NSArray* _listItems;
+}
 
 @end
 
@@ -16,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _listItems = [[NSArray alloc] initWithObjects:
+                  @"Keyboards",
+                  @"Download",
+                  nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,26 +41,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return 3;
+    return _listItems.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"configCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    switch(indexPath.row)
-    {
-        case 0:
-            cell.textLabel.text = @"Keyboards";
-            break;
-        case 1:
-            cell.textLabel.text = @"Download";
-            break;
-        case 2:
-            cell.textLabel.text = @"Options";
-            break;
-    }
+    //Configure the cell...
+    cell.textLabel.text = _listItems[indexPath.row];
     
     return cell;
 }
