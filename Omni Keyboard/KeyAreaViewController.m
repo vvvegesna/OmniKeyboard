@@ -30,7 +30,7 @@
     {
         _keys = [[NSMutableArray alloc] init];
         UIView* view = [[UIView alloc] initWithFrame:frame];
-        [view setBackgroundColor:[UIColor blackColor]];
+        //[view setBackgroundColor:[UIColor whiteColor]];
         
         self.view = view;
     }
@@ -62,8 +62,8 @@
     int index;
     for(index = 0; index < MIN(rows*columns, _keys.count); ++index)
     {   // Reposition existing buttons
-        UIButton* btn = _keys[index];
-        btn.frame = CGRectMake( (index%columns)*widthPerButton,
+        UILabel* key = _keys[index];
+        key.frame = CGRectMake( (index%columns)*widthPerButton,
                                (index/columns)*heightPerButton,
                                widthPerButton,
                                heightPerButton);
@@ -72,48 +72,50 @@
     for(; index < rows*columns; ++index)
     {   // Too few old buttons, need to make new ones.
         
-        //NSLog(@"adding button");
-        UIButton* btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        btn.frame = CGRectMake( (index%columns)*widthPerButton,
+        UILabel* key = [[UILabel alloc] init];
+        
+        key.frame = CGRectMake( (index%columns)*widthPerButton,
                                (index/columns)*heightPerButton,
                                widthPerButton,
                                heightPerButton);
         
-        [btn setTitle:@"" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(didPressKey:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = index;
+        [key setText:@""];
+        [key setTextColor:self.view.tintColor];
+        [key setTextAlignment:NSTextAlignmentCenter];
         
-        [btn setUserInteractionEnabled:NO];
+        key.tag = index;
         
-        [_keys addObject:btn];
-        [self.view addSubview:btn];
+        [key setUserInteractionEnabled:NO];
+        
+        [_keys addObject:key];
+        [self.view addSubview:key];
     }
     
     for(int j = _keys.count - 1; j >= index; --j)
     {   // Too many buttons, get rid of extras.
         // Removing them starting from the end should be faster.
-        UIButton* btn = _keys[j];
+        UILabel* key = _keys[j];
         
-        [btn removeFromSuperview];
+        [key removeFromSuperview];
         [_keys removeObjectAtIndex:j];
     }
 }
 
 -(IBAction)didPressKey:(id)sender
 {
-    UIButton* btn = sender;
+    UILabel* key = sender;
     
-    [_delegate keyUsed:btn.tag type:ActionTypeTouchDown];
+    [_delegate keyUsed:key.tag type:ActionTypeTouchDown];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{ƒ
+{
     int index = -1;
     
     UITouch* touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
-    for(UIButton* key in _keys)
+    for(UILabel* key in _keys)
     {
         if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
         {
@@ -126,32 +128,50 @@
 }
 
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    int index = -1;
+    
+    UITouch* touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    
+    for(UILabel* key in _keys)
+    {
+        if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
+        {
+            index = key.tag;
+        }
+    }
+    
+    if(index != -1) [_delegate keyUsed:index type:ActionTypeLiftUp];
+}
+
 -(void)updateLayoutViewWithStrings:(NSArray*)strings
 {
     int index;
     
     for(index = 0; index < MIN(_rows * _columns, strings.count); ++index)
     {   // Update existing buttons.
-        UIButton* btn = _keys[index];
+        UILabel* key = _keys[index];
         NSString* text = strings[index];
         
         if([text length] > 0)
         {
-            btn.hidden = NO;
-            [btn setTitle:text forState:UIControlStateNormal];
+            key.hidden = NO;
+            [key setText:text];
         }
         else
         {
-            [btn setTitle:@"" forState:UIControlStateNormal];
-            btn.hidden = YES;
+            [key setText:@""];
+            key.hidden = YES;
         }
     }
     
     for(; index < _rows*_columns; ++index)
     {   // Not enough strings. Just disable the remaining buttons.
-        UIButton* btn = _keys[index];
+        UILabel* key = _keys[index];
         
-        btn.hidden = YES;
+        key.hidden = YES;
     }
     
     // If there were even more strings, just ignore them.

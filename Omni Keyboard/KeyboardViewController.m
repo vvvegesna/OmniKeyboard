@@ -35,8 +35,8 @@
     _currentKeyset = _board.keysets[_board.initialKeyset];
     
     
-    int usableWidth = self.view.bounds.size.width;
-    int usableHeight = (3.0/7.0)*self.view.bounds.size.height;    
+    int usableWidth = self.view.frame.size.width;
+    int usableHeight = self.view.frame.size.height - (self.textView.frame.size.height + self.textView.frame.origin.y);
     
     _keyArea = [[KeyAreaViewController alloc] initWithFrame:CGRectMake(0, 0, usableWidth, usableHeight)];
     _keyArea.delegate = self;
@@ -44,6 +44,10 @@
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
     
     self.textView.inputView = _keyArea.view;
+}
+-(void)viewDidLayoutSubviews
+{
+    [self.textView setContentOffset:CGPointZero animated:NO];
 }
 
 - (IBAction)didPressCut:(id)sender {
