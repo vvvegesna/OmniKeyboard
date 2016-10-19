@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConfigTableViewController : UITableViewController
+@interface MenuTableViewController : UITableViewController
 
 -(IBAction)didPressDone:(id)sender;
 

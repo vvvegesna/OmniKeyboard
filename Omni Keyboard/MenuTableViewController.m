@@ -6,16 +6,16 @@
 //  Copyright © 2016 Sky. All rights reserved.
 //
 
-#import "ConfigTableViewController.h"
+#import "MenuTableViewController.h"
 
-@interface ConfigTableViewController ()
+@interface MenuTableViewController ()
 {
     NSArray* _listItems;
 }
 
 @end
 
-@implementation ConfigTableViewController
+@implementation MenuTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

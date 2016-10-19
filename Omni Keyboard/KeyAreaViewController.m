@@ -79,9 +79,11 @@
                                widthPerButton,
                                heightPerButton);
         
-        [btn setTitle:@"exp" forState:UIControlStateNormal];
+        [btn setTitle:@"" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(didPressKey:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = index;
+        
+        [btn setUserInteractionEnabled:NO];
         
         [_keys addObject:btn];
         [self.view addSubview:btn];
@@ -105,7 +107,7 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+{ƒ
     int index = -1;
     
     UITouch* touch = [[event allTouches] anyObject];
@@ -113,7 +115,6 @@
     
     for(UIButton* key in _keys)
     {
-        //if([key hitTest:[self.view convertPoint:location toView:key] withEvent:nil])
         if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
         {
             index = key.tag;

@@ -27,8 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _keyArea.delegate = self;
-    
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
     NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
@@ -41,9 +39,11 @@
     int usableHeight = (3.0/7.0)*self.view.bounds.size.height;    
     
     _keyArea = [[KeyAreaViewController alloc] initWithFrame:CGRectMake(0, 0, usableWidth, usableHeight)];
-    self.textView.inputView = _keyArea.view;
+    _keyArea.delegate = self;
     [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+    
+    self.textView.inputView = _keyArea.view;
 }
 
 - (IBAction)didPressCut:(id)sender {
