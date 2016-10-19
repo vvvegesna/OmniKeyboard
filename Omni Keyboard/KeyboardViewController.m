@@ -27,48 +27,60 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Create the keyboard parser and parse the default keyboard.
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
     NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
     _board = [parser parseKeyboardFromURL:url];
     
+    // Get the initial keyset for the keyboard and set it as the current keyset.
     _currentKeyset = _board.keysets[_board.initialKeyset];
     
-    
+    // Usable width is the whole width.
+    // Usable height is everything below the bottom of the textView.
     int usableWidth = self.view.frame.size.width;
     int usableHeight = self.view.frame.size.height - (self.textView.frame.size.height + self.textView.frame.origin.y);
     
+    // Create the Key Area, and initialize it with the default layout.
     _keyArea = [[KeyAreaViewController alloc] initWithFrame:CGRectMake(0, 0, usableWidth, usableHeight)];
     _keyArea.delegate = self;
     [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
     
+    // Set the Key Area we just created as the pop-out keyboard for the textView.
     self.textView.inputView = _keyArea.view;
 }
--(void)viewDidLayoutSubviews
-{
-    [self.textView setContentOffset:CGPointZero animated:NO];
-}
 
-- (IBAction)didPressCut:(id)sender {
-    UIPasteboard *cp = [UIPasteboard generalPasteboard];
-    [cp setString: [_textView text]];
-    _textView.text = @"";
-}
 
+/** Copies all the text in textView and puts it in iOS's pasteboard. */
 - (IBAction)didPressCopy:(id)sender {
+    
     UIPasteboard *cp = [UIPasteboard generalPasteboard];
     [cp setString: [_textView text]];
 }
 
+/** Removes all the text in textView. */
 - (IBAction)didPressClear:(id)sender {
+    
     _textView.text = @"";
 }
 
-- (IBAction)didPressConfig:(id)sender {
+/** Copies, then Clears */
+- (IBAction)didPressCut:(id)sender {
+    
+    [self didPressCopy:nil];
+    [self didPressClear:nil];
+}
+
+/** Go to the menu. */
+- (IBAction)didPressMenu:(id)sender {
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
 }
 
+/**
+ * Tells key area to update the view. Does not change number of rows or columns.
+ * DOES NOT ADD OR DELETE KEYS, but might HIDE some if they have no text (@""=hidden, @" "=blank)
+ */
 -(void)changeLayoutWithKeysetID:(NSString*)keysetID
 {
     _currentKeyset = _board.keysets[keysetID];
@@ -76,6 +88,9 @@
     self.textView.inputView = _keyArea.view;
 }
 
+/** A key is "used" when it is touched, or lifed from.
+ * @param   type    whether the action was a TouchDown, or LiftUp.
+ */
 -(void)keyUsed:(int)index type:(ActionType)type
 {
     Key* pressedKey = _currentKeyset.keys[index];

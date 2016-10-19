@@ -13,9 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
-
-
-- (IBAction)didPressConfig:(id)sender;
+- (IBAction)didPressMenu:(id)sender;
 - (IBAction)didPressCopy:(id)sender;
 - (IBAction)didPressCut:(id)sender;
 - (IBAction)didPressClear:(id)sender;

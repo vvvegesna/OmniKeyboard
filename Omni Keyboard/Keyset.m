@@ -21,6 +21,7 @@
     return self;
 }
 
+/** Gets text text from all the keys and returns an immutable NSArray containing the strings. */
 -(NSArray*)getKeyStrings
 {
     NSMutableArray* strings = [[NSMutableArray alloc] init];
@@ -35,7 +36,6 @@
             text = @"";
         }
         
-        //[strings addObject:keys.text?keys.text:@""];
         [strings addObject:text];
     }
     

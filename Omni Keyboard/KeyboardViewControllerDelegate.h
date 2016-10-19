@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/** Define ActionType enum */
 typedef NS_ENUM(NSUInteger, ActionType)
 {
     ActionTypeTouchDown,
@@ -16,6 +17,10 @@ typedef NS_ENUM(NSUInteger, ActionType)
 
 @protocol KeyboardViewControllerDelegate <NSObject>
 
+/**
+ * KeyArea doesn't need to know everything about KeyboardViewController,
+ * it just needs to be able to call this.
+ */
 -(void)keyUsed:(int)index type:(ActionType)type;
 
 @end
