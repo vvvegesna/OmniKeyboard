@@ -11,14 +11,14 @@
 #import "Keyset.h"
 #import "Key.h"
 
-#import "KeyAreaViewController.h"
-
 @interface KeyboardViewController ()
 {
+    int _rows;
+    int _columns;
+    NSMutableArray* _buttons;
+    
     Keyboard* _board;
     Keyset* _currentKeyset;
-    
-    KeyAreaViewController* _keyArea;
 }
 @end
 
@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //_buttons = [[NSMutableArray alloc] init];
+    _buttons = [[NSMutableArray alloc] init];
     
     KeyboardParser* parser = [[KeyboardParser alloc] init];
     
@@ -35,14 +35,9 @@
     _board = [parser parseKeyboardFromURL:url];
     
     _currentKeyset = _board.keysets[_board.initialKeyset];
-    
-    [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
-    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
-    
-    /*
+    //[_textView resignFirstResponder];
     [self newLayoutWithRows:_board.rows columns:_board.columns];
     [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
-     */
 }
 
 - (IBAction)didPressCut:(id)sender {
@@ -64,25 +59,14 @@
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
 }
 
--(void)changeLayoutWithKeysetID:(NSString*)keysetID
-{
-    _currentKeyset = _board.keysets[keysetID];
-    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
-}
-
-/*
 -(void)newLayoutWithRows:(int)rows columns:(int)columns
 {
-    
     self->_rows = rows;
     self->_columns = columns;
     
-    //int usableWidth = _keyArea
     
-    int usableWidth = _keyArea.view.bounds.size.width;//_keyboardView.bounds.size.width;
-    int usableHeight = _keyArea.view.bounds.size.height;//_keyboardView.bounds.size.height;
-    //int usableWidth = self.view.bounds.size.width;
-    //int usableHeight = (1.0/2.0) * self.view.bounds.size.height;
+    int usableWidth = self.view.bounds.size.width;
+    int usableHeight = (1.0/2.0) * self.view.bounds.size.height;
     
     int startingHeight = self.view.bounds.size.height - usableHeight;
     
@@ -122,6 +106,12 @@
     }
 }
 
+-(void)changeLayoutWithKeysetID:(NSString*)keysetID
+{
+    _currentKeyset = _board.keysets[keysetID];
+    [self updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+}
+
 -(void)updateLayoutViewWithStrings:(NSArray*)strings
 {
     int index;
@@ -152,26 +142,39 @@
     
     // If there were even more strings, just ignore them.
 }
-*/
 
--(void)keyUsed:(int)index type:(ActionType)type
+-(IBAction)didPressKey:(id)sender
 {
-    /*
-    NSLog(@"Key with index %i activated with action ID %u", index, type);
+    UIButton* btn = sender;
     
-    if(type == ActionTypeTouchDown)
-    {
-        NSLog(@"Action was touch down");
-    }
-    */
-    
+    [self didPressKeyWithIndex:btn.tag];
+}
+
+-(void)didPressKeyWithIndex:(int)index
+{
     Key* pressedKey = _currentKeyset.keys[index];
+    NSRange range;
+    NSString * firstHalfString;
+    NSString * secondHalfString;
+    NSString * insertingString;
     
     if(pressedKey.action != nil)
     {
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
-            _textView.text = [_textView.text stringByAppendingString:@" "];
+            range = _textView.selectedRange;
+            firstHalfString = [_textView.text substringToIndex:range.location];
+            secondHalfString = [_textView.text substringFromIndex: range.location];
+            insertingString = @" ";
+            _textView.scrollEnabled = NO;
+            
+            _textView.text = [NSString stringWithFormat: @"%@%@%@",
+                              firstHalfString,
+                              insertingString,
+                              secondHalfString];
+            range.location += [insertingString length];
+            _textView.selectedRange = range;
+            _textView.scrollEnabled = YES;
         }
         return;
     }
@@ -185,20 +188,45 @@
     
     if(pressedKey.text != nil)
     {
-        _textView.text = [_textView.text stringByAppendingString:pressedKey.text];
-        [self changeLayoutWithKeysetID:_board.initialKeyset];
+        if([pressedKey.text isEqualToString:@"util1"])
+        {
+            NSLog(@"detected util1 press");
+            
+            NSMutableArray* strings = [[NSMutableArray alloc] init];
+            
+            for(int i = 0; i < 4*6; ++i)
+            {
+                [strings addObject:[NSString stringWithFormat:@"%i", i]];
+            }
+            
+            [self newLayoutWithRows:4 columns:6];
+            [self updateLayoutViewWithStrings:strings];
+            
+            
+        }
+        else
+        {
+            range = _textView.selectedRange;
+            firstHalfString = [_textView.text substringToIndex:range.location];
+            secondHalfString = [_textView.text substringFromIndex: range.location];
+            insertingString = pressedKey.text;
+            _textView.scrollEnabled = NO;
+            
+            _textView.text = [NSString stringWithFormat: @"%@%@%@",
+                              firstHalfString,
+                              insertingString,
+                              secondHalfString];
+            range.location += [insertingString length];
+            _textView.selectedRange = range;
+            _textView.scrollEnabled = YES;
+            [self changeLayoutWithKeysetID:_board.initialKeyset];
+            
+        }
     }
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue
 {
-    
-    if([segue.identifier isEqualToString:@"keyboardEmbedsKeyArea"])
-    {
-        _keyArea = segue.destinationViewController;
-        _keyArea.delegate = self;
-    }
-    
     
 }
 

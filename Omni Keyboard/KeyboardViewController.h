@@ -7,20 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KeyboardViewControllerDelegate.h"
 
-@interface KeyboardViewController : UIViewController <KeyboardViewControllerDelegate>
+@interface KeyboardViewController : UIViewController
+- (IBAction)didPressConfig:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
-
-
-- (IBAction)didPressConfig:(id)sender;
 - (IBAction)didPressCopy:(id)sender;
 - (IBAction)didPressCut:(id)sender;
 - (IBAction)didPressClear:(id)sender;
 
--(void)keyUsed:(int)index type:(ActionType)type;
+- (IBAction)unwindToKeyboard:(UIStoryboardSegue*)segue;
 
 @end
 

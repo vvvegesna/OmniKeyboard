@@ -61,7 +61,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="keyArea" destination="GOb-hX-Nob" id="j8G-8S-2nc"/>
                         <outlet property="textView" destination="xpx-TW-FUp" id="tQR-TY-pxU"/>
                         <segue destination="0z9-zg-YOl" kind="show" identifier="keyboardToConfig" id="rKl-NO-cqQ"/>
                     </connections>
@@ -172,6 +171,10 @@
         <scene sceneID="HYG-TJ-Sqt">
             <objects>
                 <viewController id="lNY-6t-bQE" customClass="KeyAreaViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bJD-xy-xqK"/>
+                        <viewControllerLayoutGuide type="bottom" id="bQQ-QN-Gm5"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sNC-Pd-cT0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
