@@ -97,7 +97,7 @@
         [self.view addSubview:btn];
     }
     
-    for(int j = _buttons.count - 1; j >= index; --j)
+    for(int j = (int)_buttons.count - 1; j >= index; --j)
     {   // Too many buttons, get rid of extras. Removing from the end should be faster.
         UIButton* btn = _buttons[j];
         
@@ -147,34 +147,29 @@
 {
     UIButton* btn = sender;
     
-    [self didPressKeyWithIndex:btn.tag];
+    [self didPressKeyWithIndex:(int)btn.tag];
+}
+-(void) insertTextAtCurser: (NSString *) text{
+    NSRange range;
+    NSMutableString *string = [_textView.text mutableCopy];
+    range = _textView.selectedRange;
+    [string insertString:text atIndex:range.location];
+    [_textView setText:string];
+    range.location += [text length];
+    _textView.selectedRange = range;
+    _textView.scrollEnabled = YES;
+    
 }
 
 -(void)didPressKeyWithIndex:(int)index
 {
     Key* pressedKey = _currentKeyset.keys[index];
-    NSRange range;
-    NSString * firstHalfString;
-    NSString * secondHalfString;
-    NSString * insertingString;
     
     if(pressedKey.action != nil)
     {
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
-            range = _textView.selectedRange;
-            firstHalfString = [_textView.text substringToIndex:range.location];
-            secondHalfString = [_textView.text substringFromIndex: range.location];
-            insertingString = @" ";
-            _textView.scrollEnabled = NO;
-            
-            _textView.text = [NSString stringWithFormat: @"%@%@%@",
-                              firstHalfString,
-                              insertingString,
-                              secondHalfString];
-            range.location += [insertingString length];
-            _textView.selectedRange = range;
-            _textView.scrollEnabled = YES;
+         [self insertTextAtCurser:@" "];
         }
         return;
     }
@@ -206,19 +201,7 @@
         }
         else
         {
-            range = _textView.selectedRange;
-            firstHalfString = [_textView.text substringToIndex:range.location];
-            secondHalfString = [_textView.text substringFromIndex: range.location];
-            insertingString = pressedKey.text;
-            _textView.scrollEnabled = NO;
-            
-            _textView.text = [NSString stringWithFormat: @"%@%@%@",
-                              firstHalfString,
-                              insertingString,
-                              secondHalfString];
-            range.location += [insertingString length];
-            _textView.selectedRange = range;
-            _textView.scrollEnabled = YES;
+            [self insertTextAtCurser:pressedKey.text];
             [self changeLayoutWithKeysetID:_board.initialKeyset];
             
         }
