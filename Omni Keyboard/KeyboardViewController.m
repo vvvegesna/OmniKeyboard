@@ -85,7 +85,6 @@
 {
     _currentKeyset = _board.keysets[keysetID];
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
-    self.textView.inputView = _keyArea.view;
 }
 
 /** A key is "used" when it is touched, or lifed from.
@@ -99,7 +98,7 @@
     {
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
-            _textView.text = [_textView.text stringByAppendingString:@" "];
+         [self insertTextAtCursor:@" "];
         }
         return;
     }
@@ -113,9 +112,18 @@
     
     if(pressedKey.text != nil)
     {
-        _textView.text = [_textView.text stringByAppendingString:pressedKey.text];
+         [self insertTextAtCursor:pressedKey.text];
         [self changeLayoutWithKeysetID:_board.initialKeyset];
     }
+}
+-(void) insertTextAtCursor: (NSString *) text{
+    NSRange range;
+    NSMutableString *string = [_textView.text mutableCopy];
+    range = _textView.selectedRange;
+    [string insertString:text atIndex:range.location];
+    [_textView setText:string];
+    range.location += [text length];
+    _textView.selectedRange = range;   
 }
 
 @end
