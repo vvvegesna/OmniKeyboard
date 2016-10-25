@@ -100,6 +100,17 @@
         {
          [self insertTextAtCursor:@" "];
         }
+        if([pressedKey.action isEqualToString:@"ENTER"])
+        {
+            _textView.text = [_textView.text stringByAppendingString:@"\n"];
+        }
+        
+        if([pressedKey.action isEqualToString:@"DELETE"])
+        {
+            NSMutableString* string1 = _textView.text;
+            _textView.text = [string1 substringToIndex:string1.length-(string1.length>0)];
+        }
+
         return;
     }
     
