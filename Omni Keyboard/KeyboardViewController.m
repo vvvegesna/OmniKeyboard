@@ -94,12 +94,14 @@
 {
     Key* pressedKey = _currentKeyset.keys[index];
     
-    if(pressedKey.action != nil && [_keyArea touchEnd:true])
+    if(pressedKey.action != nil)
     {
+        if ([_keyArea getTouchend]) return;
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
          [self insertTextAtCursor:@" "];
         }
+        //simple changes need to be maid in xml file inorder to get "enter" and "del" working.
         return;
     }
     

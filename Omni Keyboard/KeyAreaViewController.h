@@ -20,4 +20,6 @@
 
 -(void)updateLayoutViewWithStrings:(NSArray*)strings;
 
+-(Boolean) getTouchend;
+
 @end
