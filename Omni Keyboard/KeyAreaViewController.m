@@ -13,7 +13,6 @@
     int _rows;
     int _columns;
     NSMutableArray* _keys;
-    
     id <KeyboardViewControllerDelegate> _delegate;
 }
 
@@ -105,10 +104,9 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     int index = -1;
-    
     UITouch* touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
-    
+    [self touchEnd:false];
     for(UILabel* key in _keys)
     {
         if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
@@ -118,7 +116,8 @@
         }
     }
     
-    if(index != -1 ) [_delegate keyUsed:index type:ActionTypeTouchDown];
+    if(index != -1 )
+        [_delegate keyUsed:index type:ActionTypeTouchDown];
 }
 
 /**
@@ -138,7 +137,7 @@
     
     UITouch* touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
-    
+    [self touchEnd:true];
     for(UILabel* key in _keys)
     {
         if([key pointInside:[self.view convertPoint:location toView:key] withEvent:nil])
@@ -149,7 +148,9 @@
     
     if(index != -1) [_delegate keyUsed:index type:ActionTypeLiftUp];
 }
-
+-(bool) touchEnd:(bool) value{
+    return value;
+}
 /** Update text of all keys. */
 -(void)updateLayoutViewWithStrings:(NSArray*)strings
 {

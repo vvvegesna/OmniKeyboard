@@ -73,7 +73,7 @@
 }
 
 /** Go to the menu. */
-- (IBAction)didPressMenu:(id)sender {
+- (IBAction)didPressMenu:(id)sender{
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
 }
 
@@ -94,7 +94,7 @@
 {
     Key* pressedKey = _currentKeyset.keys[index];
     
-    if(pressedKey.action != nil)
+    if(pressedKey.action != nil && [_keyArea touchEnd:true])
     {
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
@@ -112,8 +112,9 @@
     
     if(pressedKey.text != nil)
     {
-         [self insertTextAtCursor:pressedKey.text];
+        [self insertTextAtCursor:pressedKey.text];
         [self changeLayoutWithKeysetID:_board.initialKeyset];
+        return;
     }
 }
 -(void) insertTextAtCursor: (NSString *) text{

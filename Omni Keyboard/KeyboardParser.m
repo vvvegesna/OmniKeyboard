@@ -61,8 +61,8 @@ didStartElement:(NSString *)elementName
     if([elementName isEqualToString:@"Keyboard"])
     {   // Start of a keyboard.
         self->keyboardName = attributeDict[@"name"];
-        self->columns = attributeDict[@"columns"].integerValue;
-        self->rows = attributeDict[@"rows"].integerValue;
+        self->columns = attributeDict[@"columns"].intValue;
+        self->rows = (long) attributeDict[@"rows"].integerValue;
         self->initialKeyset = attributeDict[@"initial"];
         keysetDictionanry = [[NSMutableDictionary alloc] init];
     }
