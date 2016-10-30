@@ -96,6 +96,7 @@
     
     if(pressedKey.action != nil)
     {
+        if (type == UIControlEventTouchDown){
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
          [self insertTextAtCursor:@" "];
@@ -107,11 +108,12 @@
         
         if([pressedKey.action isEqualToString:@"DELETE"])
         {
-            NSMutableString* string1 = _textView.text;
+            NSMutableString* string1 = (NSMutableString* )_textView.text;
             _textView.text = [string1 substringToIndex:string1.length-(string1.length>0)];
         }
 
         return;
+        }else return;
     }
     
     if(pressedKey.nextKeysetID != nil)
