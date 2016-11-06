@@ -166,9 +166,28 @@
     [input setSelectedTextRange:[input textRangeFromPosition:start toPosition:end]];
 }
 
--(void)RemoveCharacter{
-    // Reference UITextField
-    UITextField *myField = _textView;
+-(void)RemoveCharacter
+{
+    NSRange range = _textView.selectedRange;
+    
+    NSMutableString* text = [_textView.text mutableCopy];
+    
+    if(range.length == 0 && range.location > 0 )
+    {
+        --range.location;
+        range.length = 1;
+        [text deleteCharactersInRange:range];
+    }
+    else if(range.length > 0)
+    {
+        [text deleteCharactersInRange:range];
+    }
+    
+    range.length = 0;
+    [_textView setText:text];
+    [_textView setSelectedRange:range];
+    
+    /*
     
     UITextRange *myRange = myField.selectedTextRange;
     UITextPosition *myPosition = myRange.start;
@@ -181,5 +200,7 @@
     
     // Write the string back to the UITextField
     myField.text = newString;
+     
+     */
 }
 @end
