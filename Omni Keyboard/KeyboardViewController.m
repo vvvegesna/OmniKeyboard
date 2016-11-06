@@ -96,13 +96,47 @@
     
     if(pressedKey.action != nil)
     {
+        
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
-            [self insertTextAtCursor:@" "];
+            NSRange range = _textView.selectedRange;
+            
+            NSMutableString* string = [_textView.text mutableCopy];
+            
+            if(range.length == 0 && range.location > 0 )
+            {
+                [self insertTextAtCursor:@" "];
+            }
+            else if(range.length > 0)
+            {
+                _textView.text = [string stringByReplacingCharactersInRange:range withString:@" "];
+            }
+            else if(range.location == 0)
+            {
+                [self insertTextAtCursor:@" "];
+            }
+            
         }
         if([pressedKey.action isEqualToString:@"ENTER"])
         {
-            _textView.text = [_textView.text stringByAppendingString:@"\n"];
+            
+            NSRange range = _textView.selectedRange;
+            
+            NSMutableString* string = [_textView.text mutableCopy];
+            
+            if(range.length == 0 && range.location > 0 )
+            {
+                _textView.text = [string stringByAppendingString:@"\n"];
+            }
+            else if(range.length > 0)
+            {
+                _textView.text = [string stringByReplacingCharactersInRange:range withString:@"\n"];
+            }
+            else if(range.location == 0)
+            {
+                _textView.text = [_textView.text stringByAppendingString:@"\n"];
+            }
+
         }
         
         if([pressedKey.action isEqualToString:@"DELETE"])
@@ -144,7 +178,26 @@
     
     if(pressedKey.text != nil)
     {
-        [self insertTextAtCursor:pressedKey.text];
+        NSRange range = _textView.selectedRange;
+        
+        NSMutableString* string = [_textView.text mutableCopy];
+        
+        if(range.length == 0 && range.location > 0 )
+        {
+            [self insertTextAtCursor:pressedKey.text];
+        }
+        else if(range.length > 0)
+        {
+            [string deleteCharactersInRange:range];
+            [_textView setText:string];
+            [self insertTextAtCursor:pressedKey.text];
+        }
+        else if(range.location == 0)
+        {
+           [self insertTextAtCursor:pressedKey.text];
+        }
+        
+        
         [self changeLayoutWithKeysetID:_board.initialKeyset];
     }
 }
@@ -156,6 +209,7 @@
     [_textView setText:string];
     range.location += [text length];
     _textView.selectedRange = range;
+    
 }
 
 - (void)selectTextForInput:(UITextView *)input atRange:(NSRange)range {
@@ -188,19 +242,20 @@
     [_textView setSelectedRange:range];
     
     /*
-    
-    UITextRange *myRange = myField.selectedTextRange;
-    UITextPosition *myPosition = myRange.start;
-    NSInteger idx = [myField offsetFromPosition:myField.beginningOfDocument toPosition:myPosition];
-    
-    NSMutableString *newString = [myField.text mutableCopy];
-    //[self selectTextForInput:myField.text atRange:NSMakeRange(idx, 0)];
-    // Delete character before index location
-    [newString deleteCharactersInRange:NSMakeRange(--idx, 1)];
-    
-    // Write the string back to the UITextField
-    myField.text = newString;
+     
+     UITextRange *myRange = myField.selectedTextRange;
+     UITextPosition *myPosition = myRange.start;
+     NSInteger idx = [myField offsetFromPosition:myField.beginningOfDocument toPosition:myPosition];
+     
+     NSMutableString *newString = [myField.text mutableCopy];
+     //[self selectTextForInput:myField.text atRange:NSMakeRange(idx, 0)];
+     // Delete character before index location
+     [newString deleteCharactersInRange:NSMakeRange(--idx, 1)];
+     
+     // Write the string back to the UITextField
+     myField.text = newString;
      
      */
 }
+
 @end
