@@ -20,9 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _listItems = [[NSArray alloc] initWithObjects:
+    _listItems = [[NSMutableArray alloc] initWithObjects:
                   @"Keyboards",
-                  @"Download",
+                  @"Download", @"Help",
                   nil];
 }
 
@@ -52,6 +52,10 @@
             break;
         case 1:
             // segue to DownloadViewController
+            break;
+        case 2:
+            //segue to HelpWindow
+            [self performSegueWithIdentifier:@"ConfigToHelpWindow" sender:self];
             break;
     }
 }

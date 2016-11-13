@@ -119,8 +119,8 @@
         }
         if([pressedKey.action isEqualToString:@"ENTER"])
         {
-            
-            NSRange range = _textView.selectedRange;
+            [self insertTextAtCursor:@"\n"];
+           /* NSRange range = _textView.selectedRange;
             
             NSMutableString* string = [_textView.text mutableCopy];
             
@@ -135,7 +135,7 @@
             else if(range.location == 0)
             {
                 _textView.text = [_textView.text stringByAppendingString:@"\n"];
-            }
+            }*/
 
         }
         
@@ -178,24 +178,24 @@
     
     if(pressedKey.text != nil)
     {
-        NSRange range = _textView.selectedRange;
+       // NSRange range = _textView.selectedRange;
         
-        NSMutableString* string = [_textView.text mutableCopy];
+       // NSMutableString* string = [_textView.text mutableCopy];
         
-        if(range.length == 0 && range.location > 0 )
-        {
+       // if(range.length == 0 && range.location > 0 )
+       // {
             [self insertTextAtCursor:pressedKey.text];
-        }
-        else if(range.length > 0)
-        {
-            [string deleteCharactersInRange:range];
-            [_textView setText:string];
-            [self insertTextAtCursor:pressedKey.text];
-        }
-        else if(range.location == 0)
-        {
-           [self insertTextAtCursor:pressedKey.text];
-        }
+      ////  }
+       // else if(range.length > 0)
+       // {
+           // [string deleteCharactersInRange:range];
+           // [_textView setText:string];
+           // [self insertTextAtCursor:pressedKey.text];
+       // }
+      //  else if(range.location == 0)
+       // {
+       //    [self insertTextAtCursor:pressedKey.text];
+     //   }
         
         
         [self changeLayoutWithKeysetID:_board.initialKeyset];
@@ -205,6 +205,9 @@
     NSRange range;
     NSMutableString *string = [_textView.text mutableCopy];
     range = _textView.selectedRange;
+    if (range.length>0) {
+        [string deleteCharactersInRange:range];
+    }
     [string insertString:text atIndex:range.location];
     [_textView setText:string];
     range.location += [text length];

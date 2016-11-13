@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ibo-EV-lWX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ibo-EV-lWX">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -97,6 +98,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="gjE-mh-OiG" kind="show" identifier="ConfigToKeyboardSelectorTable" id="jdL-MK-JsF"/>
+                        <segue destination="62f-oX-s8o" kind="show" identifier="ConfigToHelpWindow" id="Olc-Ma-bMO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPk-7P-s45" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -138,6 +140,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNK-4V-rcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1925" y="274"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="Erk-vs-Idi">
+            <objects>
+                <viewController title="Help" id="62f-oX-s8o" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KMH-ys-d4C"/>
+                        <viewControllerLayoutGuide type="bottom" id="czQ-o4-nG1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pSb-gZ-Mgx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UQt-KR-zKC">
+                                <rect key="frame" x="0.0" y="41" width="320" height="1444"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">&lt;Keyboard name="text" columns="4" rows="4" initial="init"&gt;
+	&lt;Keyset id="init"&gt;
+		&lt;Key/&gt;&lt;Key text="text key"/&gt;&lt;Key text="link key" link="other_keyset"/&gt;&lt;Key text="enter key" action="ENTER"/&gt;
+		&lt;Key/&gt;&lt;Key/&gt;&lt;Key/&gt;&lt;Key/&gt;
+		&lt;Key/&gt;&lt;Key/&gt;&lt;Key/&gt;&lt;Key/&gt;
+		&lt;Key/&gt;&lt;Key/&gt;&lt;Key/&gt;&lt;Key/&gt;
+	&lt;/Keyset&gt;
+	
+	&lt;Keyset id="other_keyset"&gt;
+		&lt;Key/&gt;&lt;Key text="Space Key" action="SPACE"/&gt;&lt;Key text="Delete Key" action="ENTER"/&gt;
+	&lt;/Keyset&gt;
+&lt;/Keyboard&gt;                                        Keyboard		Describes the structure of the keyboard. One per XML file. Directly contains any number of Keysets.
+	"name"		The display name of the keyboard.
+	"columns"		The number of columns in the keyboard.
+	"rows"		The number of rows in the keyboard.
+	"initial"		The id of the initial (root) Keyset.
+	
+Keyset: Describes the structure of a Keyset. One Keyset is visible at a time. Keyboard contains any number of Keysets. Each Keyset can contain up to "rows" x "columns" keys. Additional keys beyond that will be ignored. If there are too few Key elements, blank keys will be used. Keys are filled starting at the top left, going right, then going to the start of the next row.
+	"id"		The unique name of each Keyset.
+	
+Key: Describes the appearance and function of a Key. Keys contain no other elements. Keys with no attributes are blank, and have no function.
+	"text"		The text the Key will display. If this is the only attribute, using the key will insert the text at the cursor, replacing any selected text.
+	"link"			The id of the Keyset to display when pressed.
+	"action"		The special, pre-defined action to preform.
+		ENTER	Performs a line break at the cursor, replacing any selected text.
+		SPACE	Inserts a space at the cursor, replacing any selected text.
+		DELETE	Deletes selected text, or if nothing is selected, deletes the character behind the cursor.</mutableString>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nLi-Wm-G3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925" y="903"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7fS-Tc-EWd">
