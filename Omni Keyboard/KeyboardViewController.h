@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "KeyboardViewControllerDelegate.h"
-
-@interface KeyboardViewController : UIViewController <KeyboardViewControllerDelegate>
+#import "changeKeyboard.h"
+@interface KeyboardViewController : UIViewController <KeyboardViewControllerDelegate, changeKeyboard>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property NSURL* url;
 
 - (IBAction)didPressMenu:(id)sender;
 - (IBAction)didPressCopy:(id)sender;

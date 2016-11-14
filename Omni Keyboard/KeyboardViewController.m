@@ -10,14 +10,13 @@
 #import "KeyboardParser.h"
 #import "Keyset.h"
 #import "Key.h"
-
 #import "KeyAreaViewController.h"
+#import "MenuTableViewController.h"
 
 @interface KeyboardViewController ()
 {
     Keyboard* _board;
     Keyset* _currentKeyset;
-    
     KeyAreaViewController* _keyArea;
 }
 @end
@@ -28,14 +27,17 @@
     [super viewDidLoad];
     
     // Create the keyboard parser and parse the default keyboard.
+    
+    _url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
+    
+    NSLog(@"%@",_url);
+    
+}
+-(void) viewWillAppear:(BOOL)animated{
     KeyboardParser* parser = [[KeyboardParser alloc] init];
-    
-    NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
-    _board = [parser parseKeyboardFromURL:url];
-    
+    _board = [parser parseKeyboardFromURL:_url];
     // Get the initial keyset for the keyboard and set it as the current keyset.
     _currentKeyset = _board.keysets[_board.initialKeyset];
-    
     // Usable width is the whole width.
     // Usable height is everything below the bottom of the textView.
     int usableWidth = self.view.frame.size.width;
@@ -50,8 +52,11 @@
     // Set the Key Area we just created as the pop-out keyboard for the textView.
     self.textView.inputView = _keyArea.view;
 }
-
-
+-(void) changeKeyboardUrl:(NSURL *)name{
+    self.url = name;
+    NSLog(@"%@",_url);
+    
+}
 /** Copies all the text in textView and puts it in iOS's pasteboard. */
 - (IBAction)didPressCopy:(id)sender {
     
@@ -77,6 +82,14 @@
     [self performSegueWithIdentifier:@"keyboardToConfig" sender:self];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"keyboardToConfig"])
+    {
+       MenuTableViewController *Mtvc = [segue destinationViewController];
+        Mtvc.passDelegate = self;
+    }
+}
 /**
  * Tells key area to update the view. Does not change number of rows or columns.
  * DOES NOT ADD OR DELETE KEYS, but might HIDE some if they have no text (@""=hidden, @" "=blank)
@@ -96,7 +109,7 @@
     
     if(pressedKey.action != nil)
     {
-        
+        if (type == UIControlEventTouchDown){
         if([pressedKey.action isEqualToString:@"SPACE"])
         {
             NSRange range = _textView.selectedRange;
@@ -164,7 +177,7 @@
             //substringToIndex:string1.length-(string1.length>0)];
             
         }
-        
+        }
         return;
     }
     

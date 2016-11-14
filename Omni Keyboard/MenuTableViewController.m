@@ -7,6 +7,7 @@
 //
 
 #import "MenuTableViewController.h"
+#import "KeyboardSelectorTableViewController.h"
 
 @interface MenuTableViewController ()
 {
@@ -38,7 +39,7 @@
     
     //Configure the cell...
     cell.textLabel.text = _listItems[indexPath.row];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -55,6 +56,16 @@
             break;
     }
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"ConfigToKeyboardSelectorTable"])
+    {
+        KeyboardSelectorTableViewController *Kstvc = [segue destinationViewController];
+        Kstvc.delegate = self.passDelegate;
+    }
+}
+
 
 /** Returns to first view in NavigationController---the Keyboard. */
 - (IBAction)didPressDone:(id)sender {

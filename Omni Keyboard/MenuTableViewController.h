@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "changeKeyboard.h"
 
 @interface MenuTableViewController : UITableViewController
 
+@property (nonatomic,retain) id <changeKeyboard> passDelegate;
 -(IBAction)didPressDone:(id)sender;
 
 @end

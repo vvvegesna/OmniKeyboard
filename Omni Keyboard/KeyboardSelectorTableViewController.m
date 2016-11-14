@@ -8,12 +8,6 @@
 
 #import "KeyboardSelectorTableViewController.h"
 
-/*
- #import "KeyboardParser.h"
- #import "Keyset.h"
- #import "Key.h"
- */
-
 @interface KeyboardSelectorTableViewController ()
 {
     NSArray* _XMLURLs;
@@ -83,13 +77,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: parse xml file, update model (use delegate?), update view
-    // self.navigationController.viewList[0].model might work (this isn't real code, but there's something like it)
-}
-
-///** Go to first view in NavigationController---the Keyboard. */
-- (IBAction)didPressDone:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    switch(indexPath.row)
+    {
+        case 0:
+            [self.delegate changeKeyboardUrl:_XMLURLs[indexPath.row]];
+             //NSLog(@"%@",_XMLURLs[indexPath.row]);
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+        case 1:
+            
+            break;
+    }
 }
 
 @end

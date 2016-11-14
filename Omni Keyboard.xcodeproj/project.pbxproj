@@ -50,6 +50,7 @@
 		33F392041D98DAE900BC1E43 /* KeyboardParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardParser.m; sourceTree = "<group>"; };
 		33F392051D98DAE900BC1E43 /* Keyset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyset.h; sourceTree = "<group>"; };
 		33F392061D98DAE900BC1E43 /* Keyset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keyset.m; sourceTree = "<group>"; };
+		E3ADA0781DD977EF00F95AF1 /* changeKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = changeKeyboard.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 				33B574411D93130200BD3C20 /* AppDelegate.h */,
 				33B574421D93130200BD3C20 /* AppDelegate.m */,
 				338657A71DB4361100708977 /* KeyboardViewControllerDelegate.h */,
+				E3ADA0781DD977EF00F95AF1 /* changeKeyboard.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";

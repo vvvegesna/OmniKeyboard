@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "changeKeyboard.h"
 
 @interface KeyboardSelectorTableViewController : UITableViewController
 
--(IBAction)didPressDone:(id)sender;
+@property (weak) id <changeKeyboard> delegate;
 
 @end

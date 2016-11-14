@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ibo-EV-lWX">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ibo-EV-lWX">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -126,13 +127,7 @@
                             <outlet property="delegate" destination="gjE-mh-OiG" id="ZQy-vy-9ro"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Keyboards" id="GyR-rg-DnN">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="MOL-VB-6ta">
-                            <connections>
-                                <action selector="didPressDone:" destination="gjE-mh-OiG" id="MFD-TI-joU"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Keyboards" id="GyR-rg-DnN"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNK-4V-rcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
