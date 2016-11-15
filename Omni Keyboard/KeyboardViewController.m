@@ -18,6 +18,7 @@
     Keyboard* _board;
     Keyset* _currentKeyset;
     KeyAreaViewController* _keyArea;
+    KeyboardParser* _parser;
 }
 @end
 
@@ -25,19 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Create the keyboard parser
+    _parser = [[KeyboardParser alloc] init];
     
-    // Create the keyboard parser and parse the default keyboard.
-    
-    _url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
-    
-    NSLog(@"%@",_url);
-    
-}
--(void) viewWillAppear:(BOOL)animated{
-    KeyboardParser* parser = [[KeyboardParser alloc] init];
-    _board = [parser parseKeyboardFromURL:_url];
-    // Get the initial keyset for the keyboard and set it as the current keyset.
-    _currentKeyset = _board.keysets[_board.initialKeyset];
     // Usable width is the whole width.
     // Usable height is everything below the bottom of the textView.
     int usableWidth = self.view.frame.size.width;
@@ -46,17 +37,23 @@
     // Create the Key Area, and initialize it with the default layout.
     _keyArea = [[KeyAreaViewController alloc] initWithFrame:CGRectMake(0, 0, usableWidth, usableHeight)];
     _keyArea.delegate = self;
-    [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
-    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+    
+    NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
+    
+    [self changeKeyboardUrl:url];
     
     // Set the Key Area we just created as the pop-out keyboard for the textView.
     self.textView.inputView = _keyArea.view;
 }
--(void) changeKeyboardUrl:(NSURL *)name{
-    self.url = name;
-    NSLog(@"%@",_url);
-    
+
+-(void) changeKeyboardUrl:(NSURL *)name
+{
+    _board = [_parser parseKeyboardFromURL:name];
+    _currentKeyset = _board.keysets[_board.initialKeyset];
+    [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
+    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];    
 }
+
 /** Copies all the text in textView and puts it in iOS's pasteboard. */
 - (IBAction)didPressCopy:(id)sender {
     
@@ -100,11 +97,18 @@
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
 }
 
+
+
 /** A key is "used" when it is touched, or lifed from.
  * @param   type    whether the action was a TouchDown, or LiftUp.
  */
 -(void)keyUsed:(int)index type:(ActionType)type
 {
+    if(index == -1 && type == ActionTypeLiftUp)
+    {
+        //reset to initial keyset
+        return;
+    }
     Key* pressedKey = _currentKeyset.keys[index];
     
     if(pressedKey.action != nil)
