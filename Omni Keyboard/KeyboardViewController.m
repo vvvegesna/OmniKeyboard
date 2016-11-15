@@ -110,75 +110,75 @@
     if(pressedKey.action != nil)
     {
         if (type == UIControlEventTouchDown){
-        if([pressedKey.action isEqualToString:@"SPACE"])
-        {
-            NSRange range = _textView.selectedRange;
-            
-            NSMutableString* string = [_textView.text mutableCopy];
-            
-            if(range.length == 0 && range.location > 0 )
+            if([pressedKey.action isEqualToString:@"SPACE"])
             {
-                [self insertTextAtCursor:@" "];
+                NSRange range = _textView.selectedRange;
+                
+                NSMutableString* string = [_textView.text mutableCopy];
+                
+                if(range.length == 0 && range.location > 0 )
+                {
+                    [self insertTextAtCursor:@" "];
+                }
+                else if(range.length > 0)
+                {
+                    _textView.text = [string stringByReplacingCharactersInRange:range withString:@" "];
+                }
+                else if(range.location == 0)
+                {
+                    [self insertTextAtCursor:@" "];
+                }
+                
             }
-            else if(range.length > 0)
+            if([pressedKey.action isEqualToString:@"ENTER"])
             {
-                _textView.text = [string stringByReplacingCharactersInRange:range withString:@" "];
-            }
-            else if(range.location == 0)
-            {
-                [self insertTextAtCursor:@" "];
-            }
-            
-        }
-        if([pressedKey.action isEqualToString:@"ENTER"])
-        {
-            
-            NSRange range = _textView.selectedRange;
-            
-            NSMutableString* string = [_textView.text mutableCopy];
-            
-            if(range.length == 0 && range.location > 0 )
-            {
-                _textView.text = [string stringByAppendingString:@"\n"];
-            }
-            else if(range.length > 0)
-            {
-                _textView.text = [string stringByReplacingCharactersInRange:range withString:@"\n"];
-            }
-            else if(range.location == 0)
-            {
-                _textView.text = [_textView.text stringByAppendingString:@"\n"];
-            }
+                
+                NSRange range = _textView.selectedRange;
+                
+                NSMutableString* string = [_textView.text mutableCopy];
+                
+                if(range.length == 0 && range.location > 0 )
+                {
+                    _textView.text = [string stringByAppendingString:@"\n"];
+                }
+                else if(range.length > 0)
+                {
+                    _textView.text = [string stringByReplacingCharactersInRange:range withString:@"\n"];
+                }
+                else if(range.location == 0)
+                {
+                    _textView.text = [_textView.text stringByAppendingString:@"\n"];
+                }
 
-        }
-        
-        if([pressedKey.action isEqualToString:@"DELETE"])
-        {
-            [self RemoveCharacter];
-            // NSMutableString* string1 = _textView.text;
-            //_textView.text = [string1 substringToIndex:string1.length-(string1.length>0)];
+            }
             
-            //if ([string1 length] > 0)
-            //{
-            // string1 = [string1 substringToIndex:[string1 length] - 1];
-            //}
-            //_textView.text=string1;
-            
-            // NSRange range;
-            // range = _textView.selectedRange;
-            //NSString* string2= @"";
-            //[string1 stringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)@""];
-            //[string1 insertString:string2 atIndex:range.location];
-            // [_textView setText:string1];
-            //range.location += [string1 length];
-            //_textView.selectedRange = range;
-            
-            //_textView.text = [string1 insertString:text atIndex:range.location];
-            //substringToIndex:string1.length-(string1.length>0)];
-            
-        }
-        }
-        return;
+            if([pressedKey.action isEqualToString:@"DELETE"])
+            {
+                [self RemoveCharacter];
+                // NSMutableString* string1 = _textView.text;
+                //_textView.text = [string1 substringToIndex:string1.length-(string1.length>0)];
+                
+                //if ([string1 length] > 0)
+                //{
+                // string1 = [string1 substringToIndex:[string1 length] - 1];
+                //}
+                //_textView.text=string1;
+                
+                // NSRange range;
+                // range = _textView.selectedRange;
+                //NSString* string2= @"";
+                //[string1 stringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)@""];
+                //[string1 insertString:string2 atIndex:range.location];
+                // [_textView setText:string1];
+                //range.location += [string1 length];
+                //_textView.selectedRange = range;
+                
+                //_textView.text = [string1 insertString:text atIndex:range.location];
+                //substringToIndex:string1.length-(string1.length>0)];
+                
+            }
+            return;
+        }else return;
     }
     
     
