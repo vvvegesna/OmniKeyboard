@@ -147,7 +147,7 @@
         }
     }
     
-    [_delegate keyUsed:index type:ActionTypeLiftUp];
+    if(index != -1) [_delegate keyUsed:index type:ActionTypeLiftUp];
 }
 
 /** Update text of all keys. */
