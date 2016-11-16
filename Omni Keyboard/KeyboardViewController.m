@@ -96,24 +96,16 @@
     _currentKeyset = _board.keysets[keysetID];
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
 }
-
-
-
 /** A key is "used" when it is touched, or lifed from.
  * @param   type    whether the action was a TouchDown, or LiftUp.
  */
 -(void)keyUsed:(int)index type:(ActionType)type
 {
-    if(index == -1 && type == ActionTypeLiftUp)
-    {
-        //reset to initial keyset
-        return;
-    }
     Key* pressedKey = _currentKeyset.keys[index];
     
     if(pressedKey.action != nil)
     {
-        if (type == UIControlEventTouchDown){
+        if (type == ActionTypeLiftUp){
             if([pressedKey.action isEqualToString:@"SPACE"])
             {
                 NSRange range = _textView.selectedRange;
@@ -195,26 +187,28 @@
     
     if(pressedKey.text != nil)
     {
-        NSRange range = _textView.selectedRange;
-        
-        NSMutableString* string = [_textView.text mutableCopy];
-        
-        if(range.length == 0 && range.location > 0 )
-        {
-            [self insertTextAtCursor:pressedKey.text];
+            if(type == ActionTypeLiftUp){
+            NSRange range = _textView.selectedRange;
+            
+            NSMutableString* string = [_textView.text mutableCopy];
+            
+            if(range.length == 0 && range.location > 0 )
+            {
+                [self insertTextAtCursor:pressedKey.text];
+            }
+            else if(range.length > 0)
+            {
+                [string deleteCharactersInRange:range];
+                [_textView setText:string];
+                [self insertTextAtCursor:pressedKey.text];
+            }
+            else if(range.location == 0)
+            {
+               [self insertTextAtCursor:pressedKey.text];
+            }
+            [self changeLayoutWithKeysetID:_board.initialKeyset];
         }
-        else if(range.length > 0)
-        {
-            [string deleteCharactersInRange:range];
-            [_textView setText:string];
-            [self insertTextAtCursor:pressedKey.text];
-        }
-        else if(range.location == 0)
-        {
-           [self insertTextAtCursor:pressedKey.text];
-        }
-        
-        
+    } else if (type == ActionTypeLiftUp){
         [self changeLayoutWithKeysetID:_board.initialKeyset];
     }
 }
