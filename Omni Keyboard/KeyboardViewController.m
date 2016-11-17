@@ -99,8 +99,16 @@
 /** A key is "used" when it is touched, or lifed from.
  * @param   type    whether the action was a TouchDown, or LiftUp.
  */
+-(void) keyNotUsed{
+    [self changeLayoutWithKeysetID:_board.initialKeyset];
+}
+
 -(void)keyUsed:(int)index type:(ActionType)type
 {
+        if(index == -1 && type == ActionTypeLiftUp) {
+            [self keyNotUsed];
+            return;
+        }
     Key* pressedKey = _currentKeyset.keys[index];
     
     if(pressedKey.action != nil)
@@ -151,26 +159,6 @@
             if([pressedKey.action isEqualToString:@"DELETE"])
             {
                 [self RemoveCharacter];
-                // NSMutableString* string1 = _textView.text;
-                //_textView.text = [string1 substringToIndex:string1.length-(string1.length>0)];
-                
-                //if ([string1 length] > 0)
-                //{
-                // string1 = [string1 substringToIndex:[string1 length] - 1];
-                //}
-                //_textView.text=string1;
-                
-                // NSRange range;
-                // range = _textView.selectedRange;
-                //NSString* string2= @"";
-                //[string1 stringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)@""];
-                //[string1 insertString:string2 atIndex:range.location];
-                // [_textView setText:string1];
-                //range.location += [string1 length];
-                //_textView.selectedRange = range;
-                
-                //_textView.text = [string1 insertString:text atIndex:range.location];
-                //substringToIndex:string1.length-(string1.length>0)];
                 
             }
             return;
@@ -181,7 +169,6 @@
     if(pressedKey.nextKeysetID != nil)
     {
         [self changeLayoutWithKeysetID:pressedKey.nextKeysetID];
-        
         return;
     }
     
@@ -209,8 +196,9 @@
             [self changeLayoutWithKeysetID:_board.initialKeyset];
         }
     } else if (type == ActionTypeLiftUp){
-        [self changeLayoutWithKeysetID:_board.initialKeyset];
+        [self keyNotUsed];
     }
+    return;
 }
 -(void) insertTextAtCursor: (NSString *) text{
     NSRange range;

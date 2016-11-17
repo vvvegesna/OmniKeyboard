@@ -135,7 +135,6 @@
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     int index = -1;
-    
     UITouch* touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
@@ -146,8 +145,7 @@
             index = key.tag;
         }
     }
-    
-    if(index != -1) [_delegate keyUsed:index type:ActionTypeLiftUp];
+    [_delegate keyUsed:index type:ActionTypeLiftUp];
 }
 
 /** Update text of all keys. */
