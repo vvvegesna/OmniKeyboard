@@ -19,26 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Gets the Documents directory.
     NSURL* docDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
-    // Gets the list of documents in the Documents directory (might include folders?)
-    NSArray* docs = [self filesAtURL:docDir];
-    
-    // Only consider .xml files.
+        // Gets the list of documents in the Documents directory (might include folders?)
+        NSArray* docs = [self filesAtURL:docDir];
+        
+        // Only consider .xml files.
     _XMLURLs = [docs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension='xml'"]];
+    
 }
+
 
 ///** Gets a list of files from the specified URL. */
 -(NSArray*)filesAtURL:(NSURL*)URL
 {
     NSArray* directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:URL
-                                                              includingPropertiesForKeys:nil
-                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                                                   error:nil];
-    
-    if(directoryContent)
+                                                              includingPropertiesForKeys:nil options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+        if(directoryContent)
     {
         return directoryContent;
     }
@@ -77,17 +74,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch(indexPath.row)
-    {
-        case 0:
-            [self.delegate changeKeyboardUrl:_XMLURLs[indexPath.row]];
-             //NSLog(@"%@",_XMLURLs[indexPath.row]);
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            break;
-        case 1:
-            
-            break;
-    }
+          [self.delegate changeKeyboardUrl:_XMLURLs[indexPath.row]];
+          [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

@@ -87,22 +87,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Menu" id="MIh-hC-s70">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="gdc-le-MhN">
-                            <connections>
-                                <action selector="didPressDone:" destination="0z9-zg-YOl" id="yK0-zB-4GT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Menu" id="MIh-hC-s70"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="gjE-mh-OiG" kind="show" identifier="ConfigToKeyboardSelectorTable" id="jdL-MK-JsF"/>
+                        <segue destination="MWS-Ch-7n7" kind="push" identifier="ConfigToKeyboardsDownload" id="5Je-3l-pWY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPk-7P-s45" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1530" y="274"/>
+            <point key="canvasLocation" x="1490" y="332"/>
         </scene>
         <!--Keyboards-->
         <scene sceneID="Acd-q5-d8u">
@@ -152,6 +147,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5es-eQ-bB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1129" y="-426"/>
+        </scene>
+        <!--Downloads-->
+        <scene sceneID="2ex-Xy-GJD">
+            <objects>
+                <tableViewController id="MWS-Ch-7n7" customClass="KeyboardsDownloadVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GHu-0m-DYX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadcell" id="cwh-Vf-x5Q">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cwh-Vf-x5Q" id="1v0-tI-ARV">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MWS-Ch-7n7" id="Tpr-W5-CJL"/>
+                            <outlet property="delegate" destination="MWS-Ch-7n7" id="ZNF-aR-snd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Downloads" id="mUq-5l-teC"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4mk-N1-Qwy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="-435"/>
         </scene>
     </scenes>
 </document>

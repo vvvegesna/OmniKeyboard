@@ -21,6 +21,7 @@
 		33F392081D98DAE900BC1E43 /* Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392021D98DAE900BC1E43 /* Keyboard.m */; };
 		33F392091D98DAE900BC1E43 /* KeyboardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392041D98DAE900BC1E43 /* KeyboardParser.m */; };
 		33F3920A1D98DAE900BC1E43 /* Keyset.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392061D98DAE900BC1E43 /* Keyset.m */; };
+		E3329E4A1DE9274900DA78E7 /* KeyboardsDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E3329E491DE9274900DA78E7 /* KeyboardsDownloadVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		33F392041D98DAE900BC1E43 /* KeyboardParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardParser.m; sourceTree = "<group>"; };
 		33F392051D98DAE900BC1E43 /* Keyset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyset.h; sourceTree = "<group>"; };
 		33F392061D98DAE900BC1E43 /* Keyset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keyset.m; sourceTree = "<group>"; };
+		E3329E481DE9274900DA78E7 /* KeyboardsDownloadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardsDownloadVC.h; sourceTree = "<group>"; };
+		E3329E491DE9274900DA78E7 /* KeyboardsDownloadVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardsDownloadVC.m; sourceTree = "<group>"; };
 		E3ADA0781DD977EF00F95AF1 /* changeKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = changeKeyboard.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +93,8 @@
 				33C7F22D1DAACFFB00E25F9B /* KeyboardSelectorTableViewController.m */,
 				337E56621DB5546200746203 /* KeyAreaViewController.h */,
 				337E56631DB5546200746203 /* KeyAreaViewController.m */,
+				E3329E481DE9274900DA78E7 /* KeyboardsDownloadVC.h */,
+				E3329E491DE9274900DA78E7 /* KeyboardsDownloadVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				33B574461D93130200BD3C20 /* KeyboardViewController.m in Sources */,
 				33C7F22E1DAACFFB00E25F9B /* KeyboardSelectorTableViewController.m in Sources */,
 				33F392071D98DAE900BC1E43 /* Key.m in Sources */,
+				E3329E4A1DE9274900DA78E7 /* KeyboardsDownloadVC.m in Sources */,
 				33B574431D93130200BD3C20 /* AppDelegate.m in Sources */,
 				33590B6F1DA211C0001D9F8A /* MenuTableViewController.m in Sources */,
 				33F3920A1D98DAE900BC1E43 /* Keyset.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "MenuTableViewController.h"
 #import "KeyboardSelectorTableViewController.h"
+#import "KeyboardsDownloadVC.h"
 
 @interface MenuTableViewController ()
 {
@@ -45,14 +46,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch(indexPath.row)
-    {
-        case 0:
-            // segue to KeyboardsTableViewController
-            [self performSegueWithIdentifier:@"ConfigToKeyboardSelectorTable" sender:self];
+    switch (indexPath.row){
+    
+    case 0: [self performSegueWithIdentifier:@"ConfigToKeyboardSelectorTable" sender:self];
             break;
-        case 1:
-            // segue to DownloadViewController
+    
+    case 1: [self performSegueWithIdentifier:@"ConfigToKeyboardsDownload" sender:self];
             break;
     }
 }
@@ -64,12 +63,11 @@
         KeyboardSelectorTableViewController *Kstvc = [segue destinationViewController];
         Kstvc.delegate = self.passDelegate;
     }
-}
-
-
-/** Returns to first view in NavigationController---the Keyboard. */
-- (IBAction)didPressDone:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    else if ([[segue identifier] isEqualToString:@"ConfigToKeyboardsDownload"])
+    {
+        KeyboardsDownloadVC *Kdvc = [segue destinationViewController];
+        Kdvc.delegate = self.passDelegate;
+    }
 }
 
 @end
