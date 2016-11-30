@@ -17,15 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSURL *uri1 = [NSURL URLWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/new.xml"];
-    [self passingToNsdata:uri1];
-}
-
--(void) passingToNsdata:(NSURL *)uri{
-    NSData *mydata = [NSData dataWithContentsOfURL:uri];
-    NSString *urlString = [[NSString alloc] initWithData:mydata encoding:NSUTF8StringEncoding];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [_XMLs addObject:url];
+    _XMLs = [[NSMutableArray alloc] initWithCapacity:1];
+    NSURL *uri1 = [[NSURL alloc] initWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/newLayout.xml"];
+    [_XMLs addObject:uri1];
+    NSURL *uri2 = [[NSURL alloc] initWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/newFormate.xml"];
+    [_XMLs addObject:uri2];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
