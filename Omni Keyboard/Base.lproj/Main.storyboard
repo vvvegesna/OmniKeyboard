@@ -92,7 +92,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="gjE-mh-OiG" kind="show" identifier="ConfigToKeyboardSelectorTable" id="jdL-MK-JsF"/>
-                        <segue destination="MWS-Ch-7n7" kind="push" identifier="ConfigToKeyboardsDownload" id="5Je-3l-pWY"/>
+                        <segue destination="MWS-Ch-7n7" kind="show" identifier="ConfigToKeyboardsDownload" id="YZb-ow-kS7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPk-7P-s45" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -156,6 +156,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="OTQ-BM-Y5x">
+                            <rect key="frame" x="0.0" y="136" width="320" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadcell" id="cwh-Vf-x5Q">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
@@ -173,6 +177,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Downloads" id="mUq-5l-teC"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="Indicator" destination="OTQ-BM-Y5x" id="lRk-wU-cec"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mk-N1-Qwy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

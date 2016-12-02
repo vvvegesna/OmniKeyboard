@@ -17,11 +17,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _XMLs = [[NSMutableArray alloc] initWithCapacity:1];
-    NSURL *uri1 = [[NSURL alloc] initWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/newLayout.xml"];
-    [_XMLs addObject:uri1];
-    NSURL *uri2 = [[NSURL alloc] initWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/newFormate.xml"];
-    [_XMLs addObject:uri2];
+    [_Indicator startAnimating];
+}
+-(void) viewWillAppear:(BOOL)animated{
+    NSURL* url = [NSURL URLWithString:@"http://google.com"];
+    
+    NSURLSessionDataTask* dataTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+       if(!error)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //NSLog(@"connected!");
+                [_Indicator stopAnimating];
+                _XMLs = [[NSMutableArray alloc] initWithCapacity:1];
+                NSURL *uri1 = [[NSURL alloc] initWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/Dvorak.xml"];
+                [_XMLs addObject:uri1];
+                NSURL *uri2 = [[NSURL alloc] initWithString:@"http://dcm.uhcl.edu/c533316fa03vegesnav/QWERTY.xml"];
+                [_XMLs addObject:uri2];
+                [self.tableView reloadData];
+            });
+        }
+        else
+        {
+            //NSLog(@"URL Communication Error");
+            dispatch_async(dispatch_get_main_queue(), ^{
+            [_Indicator stopAnimating];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            });
+           
+        }
+        
+    }];
+    
+    [dataTask resume];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -32,7 +59,6 @@
     
     return [_XMLs count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"downloadcell" forIndexPath:indexPath];

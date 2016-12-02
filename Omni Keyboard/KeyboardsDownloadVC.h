@@ -10,6 +10,9 @@
 #import "changeKeyboard.h"
 
 @interface KeyboardsDownloadVC : UITableViewController
-
 @property (weak) id <changeKeyboard> delegate;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Indicator;
+
+
 @end
