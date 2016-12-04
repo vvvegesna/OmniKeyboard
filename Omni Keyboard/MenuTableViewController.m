@@ -22,9 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _listItems = [[NSArray alloc] initWithObjects:
+    _listItems = [[NSMutableArray alloc] initWithObjects:
                   @"Keyboards",
-                  @"Download",
+                  @"Download", @"Help",
                   nil];
 }
 
@@ -53,6 +53,10 @@
     
     case 1: [self performSegueWithIdentifier:@"ConfigToKeyboardsDownload" sender:self];
             break;
+        case 2:
+            //segue to HelpWindow
+            [self performSegueWithIdentifier:@"ConfigToHelpWindow" sender:self];
+            break;
     }
 }
 
@@ -68,6 +72,10 @@
         KeyboardsDownloadVC *Kdvc = [segue destinationViewController];
         Kdvc.delegate = self.passDelegate;
     }
+}
+
+- (IBAction)buttonDone:(id)sender {
+    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 @end

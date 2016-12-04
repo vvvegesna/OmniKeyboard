@@ -12,5 +12,8 @@
 @interface KeyboardSelectorTableViewController : UITableViewController
 
 @property (weak) id <changeKeyboard> delegate;
+- (IBAction)buttonDone:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonDone;
 
 @end

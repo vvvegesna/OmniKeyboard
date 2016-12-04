@@ -12,5 +12,6 @@
 @interface MenuTableViewController : UITableViewController
 
 @property (nonatomic,retain) id <changeKeyboard> passDelegate;
+- (IBAction)buttonDone:(id)sender;
 
 @end

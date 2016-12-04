@@ -13,6 +13,6 @@
 @property (weak) id <changeKeyboard> delegate;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Indicator;
-
+- (IBAction)buttonDone:(id)sender;
 
 @end

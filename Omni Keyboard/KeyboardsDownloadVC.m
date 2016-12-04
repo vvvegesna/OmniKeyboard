@@ -78,4 +78,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (IBAction)buttonDone:(id)sender {
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
 @end
