@@ -1,8 +1,15 @@
 <Keyboard name="default" columns="4" rows="4" initial="init">
     <Keyset id="init">
         <Key text="abcd" link="l_abcd"/><Key text="efgh" link="l_efgh"/><Key text="ijkl" link="l_ijkl"/><Key text="util1"/>
-        <Key text="mno" link="l_mno"/><Key text="pqr" link="l_pqr"/><Key text="stu" link="l_stu"/><Key text="num"/>
+        <Key text="mno" link="l_mno"/><Key text="pqr" link="l_pqr"/><Key text="stu" link="l_stu"/><Key text="123" link="l_123"/>
         <Key text="vw" link="l_vw"/><Key text="xy" link="l_xy"/><Key text="z" link="l_z"/><Key text="del" action="DELETE"/>        <Key text="space" action="SPACE"/><Key text="space" action="SPACE"/><Key text="space" action="SPACE"/><Key text="enter" action="ENTER"/>    </Keyset>
+    
+    <Keyset id="l_123">
+        <Key text="1"/><Key text="2"/><Key text="3"/><Key/>
+        <Key text="4"/><Key text="5"/><Key text="6"/><Key/>
+        <Key text="7"/><Key text="8"/><Key text="9"/><Key/>
+        <Key/><Key text="0"/><Key text="."/><Key/>
+    </Keyset>
     
     <Keyset id="l_abcd">
         <Key text="a"/><Key text="A"/><Key/><Key/>
@@ -66,27 +73,4 @@
         <Key/><Key/><Key text="z"/><Key text="Z"/>
         <Key/><Key/><Key/><Key/>
     </Keyset>
-    
-    <Keyset id="">
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-    </Keyset>
-    
-    <Keyset id="">
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-    </Keyset>
-    
-    <Keyset id="">
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/>
-    </Keyset>
-    
-    
 </Keyboard>
