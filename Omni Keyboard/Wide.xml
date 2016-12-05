@@ -3,7 +3,7 @@
         <Key text="ab" link="lab"/><Key text="cd" link="lcd"/><Key text="ef" link="lef"/><Key text="gh" link="lgh"/><Key text="ij" link="lij"/><Key/>
         <Key text="kl" link="lkl"/><Key text="mn" link="lmn"/><Key text="op" link="lop"/><Key text="qr" link="lqr"/><Key text="st" link="lst"/><Key text="123" link="l123"/>
         <Key text="uv" link="luv"/><Key text="w" link="lw"/><Key text="x" link="lx"/><Key text="y" link="ly"/><Key text="z" link="lz"/><Key text="Del" action="DELETE"/>
-        <Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="ENTER" action="ENTER"/>
+        <Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="_" action="SPACE"/><Key text="Enter" action="ENTER"/>
     </Keyset>
     
     <Keyset id="l123">
