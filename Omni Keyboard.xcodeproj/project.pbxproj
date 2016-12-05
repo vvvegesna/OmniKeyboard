@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33590B6F1DA211C0001D9F8A /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33590B6E1DA211C0001D9F8A /* MenuTableViewController.m */; };
+		3372B7C21DF4E9E40031FF20 /* Wide.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3372B7C11DF4E9E40031FF20 /* Wide.xml */; };
 		337E56641DB5546200746203 /* KeyAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 337E56631DB5546200746203 /* KeyAreaViewController.m */; };
 		33B574401D93130200BD3C20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B5743F1D93130200BD3C20 /* main.m */; };
 		33B574431D93130200BD3C20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B574421D93130200BD3C20 /* AppDelegate.m */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		33590B6D1DA211C0001D9F8A /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		33590B6E1DA211C0001D9F8A /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
+		3372B7C11DF4E9E40031FF20 /* Wide.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Wide.xml; sourceTree = "<group>"; };
 		337E56621DB5546200746203 /* KeyAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyAreaViewController.h; sourceTree = "<group>"; };
 		337E56631DB5546200746203 /* KeyAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyAreaViewController.m; sourceTree = "<group>"; };
 		338657A71DB4361100708977 /* KeyboardViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				33F391FD1D98DA9100BC1E43 /* Default.xml */,
+				3372B7C11DF4E9E40031FF20 /* Wide.xml */,
 				33B5743F1D93130200BD3C20 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -209,6 +212,7 @@
 			files = (
 				33B5744E1D93130300BD3C20 /* LaunchScreen.storyboard in Resources */,
 				33B5744B1D93130300BD3C20 /* Assets.xcassets in Resources */,
+				3372B7C21DF4E9E40031FF20 /* Wide.xml in Resources */,
 				33B574491D93130300BD3C20 /* Main.storyboard in Resources */,
 				33F391FE1D98DA9100BC1E43 /* Default.xml in Resources */,
 			);

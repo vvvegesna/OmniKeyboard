@@ -38,7 +38,7 @@
     _keyArea = [[KeyAreaViewController alloc] initWithFrame:CGRectMake(0, 0, usableWidth, usableHeight)];
     _keyArea.delegate = self;
     
-    NSURL* url = [[NSBundle mainBundle] URLForResource:@"Default" withExtension:@"xml" ];
+    NSURL* url = [[NSBundle mainBundle] URLForResource:@"Wide" withExtension:@"xml" ];
     
     [self changeKeyboardUrl:url];
     
@@ -143,6 +143,10 @@
                 
             [self changeLayoutWithKeysetID:_board.initialKeyset];
         }
+    }
+    else
+    {
+        [self keyNotUsed];
     }
 }
 
