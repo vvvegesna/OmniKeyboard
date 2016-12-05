@@ -78,8 +78,8 @@
     
     <Keyset id="lst">
         <Key/><Key/><Key/><Key/><Key/><Key/>
-        <Key/><Key/><Key/><Key/><Key text="s"/><Key test="S"/>
-        <Key/><Key/><Key/><Key/><Key text="t"/><Key test="T"/>
+        <Key/><Key/><Key/><Key/><Key text="s"/><Key text="S"/>
+        <Key/><Key/><Key/><Key/><Key text="t"/><Key text="T"/>
         <Key/><Key/><Key/><Key/><Key/><Key/>
     </Keyset>
     
