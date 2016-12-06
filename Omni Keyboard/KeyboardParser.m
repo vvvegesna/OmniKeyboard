@@ -61,8 +61,8 @@ didStartElement:(NSString *)elementName
     if([elementName isEqualToString:@"Keyboard"])
     {   // Start of a keyboard.
         self->keyboardName = attributeDict[@"name"];
-        self->columns = attributeDict[@"columns"].integerValue;
-        self->rows = attributeDict[@"rows"].integerValue;
+        self->columns = MAX(1, attributeDict[@"columns"].integerValue);
+        self->rows = MAX(1, attributeDict[@"rows"].integerValue);
         self->initialKeyset = attributeDict[@"initial"];
         keysetDictionanry = [[NSMutableDictionary alloc] init];
     }
@@ -77,6 +77,12 @@ didStartElement:(NSString *)elementName
         self->nextKeysetID = attributeDict[@"link"];
         self->action = attributeDict[@"action"];
     }
+}
+
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    NSLog(@"Parse error");
+    self.keyboard = nil;
 }
 
 /** An element ended (</elementName>) */

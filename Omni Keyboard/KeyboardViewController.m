@@ -48,7 +48,19 @@
 
 -(void) changeKeyboardUrl:(NSURL *)name
 {
-    _board = [_parser parseKeyboardFromURL:name];
+    Keyboard* newKeyboard = [_parser parseKeyboardFromURL:name];
+    
+    // Make sure we parsed the keyboard correctly.
+    if(newKeyboard)
+    {
+        _board = newKeyboard;
+    }
+    else if(_board == nil)
+    {
+        // If even the default keyboard is invalid, just exit the app.
+        exit(0);
+    }
+    
     _currentKeyset = _board.keysets[_board.initialKeyset];
     [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
     [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];    
