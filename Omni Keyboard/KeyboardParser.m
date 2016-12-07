@@ -37,20 +37,6 @@
     return [super init];
 }
 
-/**
- * Creates a keyboard object using an XML file.
- * @param NSURL* URL  The URL the XML file to parse.
- */
--(Keyboard*)parseKeyboardFromURL:(NSURL*)URL
-{
-    NSXMLParser* parser = [[NSXMLParser alloc] initWithContentsOfURL:URL];
-    
-    [parser setDelegate:self];
-    
-    [parser parse];
-    return self.keyboard;
-}
-
 /** A new element was found (<elementName>) */
 - (void)parser:(NSXMLParser *)parser
 didStartElement:(NSString *)elementName

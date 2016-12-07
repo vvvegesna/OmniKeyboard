@@ -7,8 +7,23 @@
 //
 
 #import "Keyboard.h"
+#import "KeyboardParser.h"
+
 
 @implementation Keyboard
+
+-(Keyboard*)initWithContentsOfURL:(NSURL*)url
+{
+    NSXMLParser* parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    
+    KeyboardParser* delegate = [[KeyboardParser alloc] init];
+    
+    [parser setDelegate:delegate];
+    
+    [parser parse];
+    
+    return delegate.keyboard;
+}
 
 -(Keyboard*)initWithKeyset:(NSDictionary *)KeysetDict
            AndColumns:(int)columns

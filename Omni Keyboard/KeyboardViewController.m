@@ -18,7 +18,6 @@
     Keyboard* _board;
     Keyset* _currentKeyset;
     KeyAreaViewController* _keyArea;
-    KeyboardParser* _parser;
 }
 @end
 
@@ -26,8 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Create the keyboard parser
-    _parser = [[KeyboardParser alloc] init];
     
     // Usable width is the whole width.
     // Usable height is everything below the bottom of the textView.
@@ -48,18 +45,23 @@
 
 -(void) changeKeyboardUrl:(NSURL *)name
 {
-    Keyboard* newKeyboard = [_parser parseKeyboardFromURL:name];
+    Keyboard* newKeyboard = [[Keyboard alloc] initWithContentsOfURL:name];//[_parser parseKeyboardFromURL:name];
     
-    // Make sure we parsed the keyboard correctly.
-    if(newKeyboard)
-    {
-        _board = newKeyboard;
+    if(!newKeyboard)
+    {   // New layout is invalid.
+        if(!_board)
+        {   // No valid layout on record.
+            /* Show fatal error alert.*/
+            exit(0); // Move to error acknoledgement.
+        }
+        
+        /* Show invalid layout error alert. */
+        
+        // Don't proceed.
+        return;
     }
-    else if(_board == nil)
-    {
-        // If even the default keyboard is invalid, just exit the app.
-        exit(0);
-    }
+    
+    _board = newKeyboard;
     
     _currentKeyset = _board.keysets[_board.initialKeyset];
     [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];

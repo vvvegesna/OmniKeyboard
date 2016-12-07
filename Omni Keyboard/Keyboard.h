@@ -17,6 +17,8 @@
 
 @property NSDictionary* keysets;
 
+-(Keyboard*)initWithContentsOfURL:(NSURL*)url;
+
 -(Keyboard*)initWithKeyset:(NSDictionary *)KeysetDict AndColumns:(int)columns AndRows:(int)rows AndInitialKeyset:(NSString*) initKeyset;
 
 
