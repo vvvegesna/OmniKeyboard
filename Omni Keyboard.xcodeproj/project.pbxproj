@@ -17,7 +17,6 @@
 		33B5744B1D93130300BD3C20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B5744A1D93130300BD3C20 /* Assets.xcassets */; };
 		33B5744E1D93130300BD3C20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B5744C1D93130300BD3C20 /* LaunchScreen.storyboard */; };
 		33C7F22E1DAACFFB00E25F9B /* KeyboardSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C7F22D1DAACFFB00E25F9B /* KeyboardSelectorTableViewController.m */; };
-		33F391FE1D98DA9100BC1E43 /* Default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33F391FD1D98DA9100BC1E43 /* Default.xml */; };
 		33F392071D98DAE900BC1E43 /* Key.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392001D98DAE900BC1E43 /* Key.m */; };
 		33F392081D98DAE900BC1E43 /* Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392021D98DAE900BC1E43 /* Keyboard.m */; };
 		33F392091D98DAE900BC1E43 /* KeyboardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F392041D98DAE900BC1E43 /* KeyboardParser.m */; };
@@ -44,7 +43,6 @@
 		33B5744F1D93130300BD3C20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33C7F22C1DAACFFB00E25F9B /* KeyboardSelectorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardSelectorTableViewController.h; sourceTree = "<group>"; };
 		33C7F22D1DAACFFB00E25F9B /* KeyboardSelectorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardSelectorTableViewController.m; sourceTree = "<group>"; };
-		33F391FD1D98DA9100BC1E43 /* Default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Default.xml; sourceTree = "<group>"; };
 		33F391FF1D98DAE900BC1E43 /* Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Key.h; sourceTree = "<group>"; };
 		33F392001D98DAE900BC1E43 /* Key.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Key.m; sourceTree = "<group>"; };
 		33F392011D98DAE900BC1E43 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		33B5743E1D93130200BD3C20 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				33F391FD1D98DA9100BC1E43 /* Default.xml */,
 				3372B7C11DF4E9E40031FF20 /* Wide.xml */,
 				33B5743F1D93130200BD3C20 /* main.m */,
 			);
@@ -214,7 +211,6 @@
 				33B5744B1D93130300BD3C20 /* Assets.xcassets in Resources */,
 				3372B7C21DF4E9E40031FF20 /* Wide.xml in Resources */,
 				33B574491D93130300BD3C20 /* Main.storyboard in Resources */,
-				33F391FE1D98DA9100BC1E43 /* Default.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
