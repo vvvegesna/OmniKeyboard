@@ -52,12 +52,27 @@
         if(!_board)
         {   // No valid layout on record.
             /* Show fatal error alert.*/
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"My Alert" message:@"Invalid layout, try using help ." preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+               // NSLog(@"You pressed button OK");
+            }];
+            
+            [alert addAction:defaultAction];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             exit(0); // Move to error acknoledgement.
         }
         
-        /* Show invalid layout error alert. */
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"My Alert" message:@"Invalid URL, cannot find required files." preferredStyle:UIAlertControllerStyleAlert];
         
-        // Don't proceed.
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            // NSLog(@"You pressed button OK");
+        }];
+        
+        [alert addAction:defaultAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
