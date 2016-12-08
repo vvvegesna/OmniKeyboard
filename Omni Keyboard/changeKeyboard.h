@@ -10,5 +10,5 @@
 
 @protocol changeKeyboard <NSObject>
 @required
--(void) changeKeyboardUrl:(NSURL *) name;
+-(BOOL) changeKeyboardUrl:(NSURL *) name;
 @end

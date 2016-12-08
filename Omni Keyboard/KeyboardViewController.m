@@ -37,50 +37,43 @@
     
     NSURL* url = [[NSBundle mainBundle] URLForResource:@"Wide" withExtension:@"xml" ];
     
-    [self changeKeyboardUrl:url];
+    BOOL valid = [self changeKeyboardUrl:url];
+    
+    if(!valid)
+    {
+        /* Show fatal error alert */
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Fatal error" message:@"No valid default layout." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"EXIT" style:UIAlertActionStyleDefault handler:
+                                        ^(UIAlertAction * action) {
+                                            exit(0);
+                                        }];
+        
+        [alert addAction:defaultAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
     // Set the Key Area we just created as the pop-out keyboard for the textView.
     self.textView.inputView = _keyArea.view;
 }
 
--(void) changeKeyboardUrl:(NSURL *)name
+-(BOOL) changeKeyboardUrl:(NSURL *)name
 {
-    Keyboard* newKeyboard = [[Keyboard alloc] initWithContentsOfURL:name];//[_parser parseKeyboardFromURL:name];
+    Keyboard* newKeyboard = [[Keyboard alloc] initWithContentsOfURL:name];
     
     if(!newKeyboard)
-    {   // New layout is invalid.
-        if(!_board)
-        {   // No valid layout on record.
-            /* Show fatal error alert.*/
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"My Alert" message:@"Invalid layout, try using help ." preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-               // NSLog(@"You pressed button OK");
-            }];
-            
-            [alert addAction:defaultAction];
-            
-            [self presentViewController:alert animated:YES completion:nil];
-            exit(0); // Move to error acknoledgement.
-        }
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"My Alert" message:@"Invalid URL, cannot find required files." preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            // NSLog(@"You pressed button OK");
-        }];
-        
-        [alert addAction:defaultAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
+    {   // New layout is invalid.        
+        return NO;
     }
     
     _board = newKeyboard;
     
     _currentKeyset = _board.keysets[_board.initialKeyset];
     [_keyArea newLayoutWithRows:_board.rows columns:_board.columns];
-    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];    
+    [_keyArea updateLayoutViewWithStrings:[_currentKeyset getKeyStrings]];
+    
+    return YES;
 }
 
 /** Copies all the text in textView and puts it in iOS's pasteboard. */

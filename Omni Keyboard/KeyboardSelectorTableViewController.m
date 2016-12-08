@@ -74,8 +74,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-          [self.delegate changeKeyboardUrl:_XMLURLs[indexPath.row]];
-          [self.navigationController popToRootViewControllerAnimated:YES];
+    BOOL valid = [self.delegate changeKeyboardUrl:_XMLURLs[indexPath.row]];
+    if(valid)
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else
+    {
+        // Invalid layout error
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Layout is invalid." message:@"See the \"Help\" page for layout structure information.\nCurrent layout not changed." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alert addAction:defaultAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (IBAction)buttonDone:(id)sender {
